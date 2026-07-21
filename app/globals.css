@@ -258,6 +258,8 @@ header nav a:hover { color: var(--accent); }
 .trust-image-badge img { height: 82px; object-fit: contain; width: 145px; }
 .trust-image-badge.google { min-width: 250px; }
 .trust-image-badge.google img { height: 62px; width: 180px; }
+.trust-image-badge.seattle { min-width: 235px; }
+.trust-image-badge.seattle img { height: 88px; width: 155px; }
 @keyframes trust-scroll {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }

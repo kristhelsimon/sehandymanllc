@@ -334,14 +334,8 @@ export default function Home() {
                 <div className="trust-image-badge google"><img src="/badges/google-reviews.png" alt="Five-star Google reviews" /></div>
                 <div className="trust-image-badge"><img src="/badges/quality-approved.png" alt="Quality control approved" /></div>
                 <div className="trust-image-badge"><img src="/badges/warranty.png" alt="Warranty badge" /></div>
-                <div className="trust-badge">
-                  <i><Icon name="check" /></i>
-                  <span><small>Fully protected</small>Licensed · Bonded · Insured</span>
-                </div>
-                <div className="trust-badge">
-                  <i><Icon name="home" /></i>
-                  <span><small>Proudly local</small>Seattle &amp; Eastside</span>
-                </div>
+                <div className="trust-image-badge"><img src="/badges/licensed-bonded-insured.png" alt="Licensed, bonded and insured" /></div>
+                <div className="trust-image-badge seattle"><img src="/badges/seattle-eastside.png" alt="Serving Seattle and the Eastside" /></div>
               </div>
             ))}
           </div>
