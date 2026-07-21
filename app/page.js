@@ -42,6 +42,32 @@ const concepts = {
     proof: ["Friendly local team", "Thoughtful project care", "Quality without shortcuts"],
     image: "/hero-warm-modern.png",
   },
+  ironclad: {
+    number: "04",
+    name: "Ironclad",
+    note: "Industrial, sharp, high contrast",
+    eyebrow: "Seattle handyman work without shortcuts",
+    title: "Built right. Finished sharp.",
+    intro:
+      "Dependable repairs, installations, and remodels from a licensed local team that values straight answers and solid results.",
+    primary: "Get your free estimate",
+    secondary: "View our services",
+    proof: ["Licensed, bonded & insured", "Clear, honest estimates", "Serving since 2011"],
+    image: "/hero-craft-first.png",
+  },
+  field: {
+    number: "05",
+    name: "Field Built",
+    note: "Structured, strong, contractor-led",
+    eyebrow: "Reliable service across Seattle & Eastside",
+    title: "Reliable work. Solid results.",
+    intro:
+      "From the first repair to the final walkthrough, we bring skilled workmanship, clear communication, and respect for your home.",
+    primary: "Request a free quote",
+    secondary: "See what we handle",
+    proof: ["Six service specialties", "Monday–Saturday · 7am–7pm", "No job too small"],
+    image: "/hero-heritage.png",
+  },
 };
 
 const services = [

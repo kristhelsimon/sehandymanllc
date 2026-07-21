@@ -69,6 +69,32 @@ main[data-theme="warm"] {
   --radius: 18px;
 }
 
+main[data-theme="ironclad"] {
+  --ink: #101316;
+  --paper: #f0f0ed;
+  --surface: #fff;
+  --accent: #f06424;
+  --accent-dark: #c9440c;
+  --accent-soft: #f9dfd2;
+  --line: #cfd1d0;
+  --display: "Oswald", Arial, sans-serif;
+  --body: "Manrope", Arial, sans-serif;
+  --radius: 0px;
+}
+
+main[data-theme="field"] {
+  --ink: #102852;
+  --paper: #eef1f3;
+  --surface: #fff;
+  --accent: #008d52;
+  --accent-dark: #00673c;
+  --accent-soft: #dceee6;
+  --line: #cbd3dc;
+  --display: "Oswald", Arial, sans-serif;
+  --body: "Manrope", Arial, sans-serif;
+  --radius: 0px;
+}
+
 .concept-bar {
   align-items: center;
   background: #111714;
@@ -95,7 +121,7 @@ main[data-theme="warm"] {
   cursor: pointer;
   display: flex;
   gap: 12px;
-  min-width: 190px;
+  min-width: 166px;
   padding: 10px 14px;
   text-align: left;
   transition: .25s;
@@ -417,6 +443,46 @@ main[data-theme="warm"] .hero h1 { font-style: italic; }
 main[data-theme="warm"] .service-card { border-radius: 18px; margin: 6px; }
 main[data-theme="warm"] .project-image { margin: 28px; border-radius: 18px; }
 
+/* Option 04: hard-edged industrial direction */
+main[data-theme="ironclad"] .utility { background: #050607; border-bottom: 3px solid var(--accent); }
+main[data-theme="ironclad"] header { border-bottom: 1px solid #c7c9c8; }
+main[data-theme="ironclad"] header nav a { font-family: var(--display); letter-spacing: .04em; text-transform: uppercase; }
+main[data-theme="ironclad"] .header-cta { border: 2px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); text-transform: uppercase; }
+main[data-theme="ironclad"] .hero { background: #0c0e10; }
+main[data-theme="ironclad"] .hero > img { clip-path: polygon(18% 0, 100% 0, 100% 100%, 0 100%); margin-left: auto; position: absolute; right: 0; width: 62%; }
+main[data-theme="ironclad"] .hero-shade { background: linear-gradient(90deg, #0c0e10 0%, #0c0e10 43%, rgba(12,14,16,.88) 51%, rgba(12,14,16,.08) 78%); }
+main[data-theme="ironclad"] .hero-copy { left: 7%; max-width: 600px; }
+main[data-theme="ironclad"] .hero h1 { font-size: clamp(58px, 6.5vw, 100px); letter-spacing: -.015em; text-transform: uppercase; }
+main[data-theme="ironclad"] .hero-rating { border: 1px solid #d2d3d3; box-shadow: 6px 6px 0 var(--accent); }
+main[data-theme="ironclad"] .button { letter-spacing: .06em; text-transform: uppercase; }
+main[data-theme="ironclad"] .hero-proof { background: #202326; border-top: 3px solid var(--accent); }
+main[data-theme="ironclad"] .hero-proof > span, main[data-theme="ironclad"] .hero-index { color: white; }
+main[data-theme="ironclad"] .hero-proof i { background: var(--accent); color: white; }
+main[data-theme="ironclad"] .section h2, main[data-theme="ironclad"] .project-copy h2, main[data-theme="ironclad"] .estimate h2 { letter-spacing: -.015em; text-transform: uppercase; }
+main[data-theme="ironclad"] .project-copy { align-self: stretch; background: var(--ink); color: white; display: flex; flex-direction: column; justify-content: center; }
+main[data-theme="ironclad"] .project-copy > p, main[data-theme="ironclad"] .project-copy li span { color: #bbc0c3; }
+main[data-theme="ironclad"] .project-copy li strong { color: white; }
+main[data-theme="ironclad"] .project-copy li { border-color: #ffffff26; }
+
+/* Option 05: structured contractor direction */
+main[data-theme="field"] .utility { background: var(--ink); border-left: 12vw solid var(--accent); }
+main[data-theme="field"] header { border-bottom: 5px solid var(--accent); }
+main[data-theme="field"] header nav a { font-family: var(--display); letter-spacing: .035em; text-transform: uppercase; }
+main[data-theme="field"] .header-cta { box-shadow: 5px 5px 0 var(--ink); text-transform: uppercase; }
+main[data-theme="field"] .hero { background: #0b2149; }
+main[data-theme="field"] .hero > img { margin-left: auto; position: absolute; right: 0; width: 59%; }
+main[data-theme="field"] .hero-shade { background: linear-gradient(111deg, rgba(9,32,76,.99) 0%, rgba(9,32,76,.99) 52%, rgba(9,32,76,.14) 52.2%, rgba(9,32,76,.04) 100%), repeating-linear-gradient(45deg, transparent 0 34px, rgba(255,255,255,.035) 35px 36px); }
+main[data-theme="field"] .hero-copy { left: 7%; max-width: 610px; }
+main[data-theme="field"] .hero h1 { font-size: clamp(56px, 6.1vw, 94px); letter-spacing: 0; text-transform: uppercase; }
+main[data-theme="field"] .eyebrow { color: #dce8f5; }
+main[data-theme="field"] .hero-rating { border: 2px solid white; box-shadow: 6px 6px 0 var(--accent); }
+main[data-theme="field"] .button { letter-spacing: .05em; text-transform: uppercase; }
+main[data-theme="field"] .hero-proof { background: white; border-top: 4px solid var(--accent); left: 7%; right: 7%; }
+main[data-theme="field"] .hero-index { display: none; }
+main[data-theme="field"] .section h2, main[data-theme="field"] .project-copy h2, main[data-theme="field"] .estimate h2 { letter-spacing: 0; text-transform: uppercase; }
+main[data-theme="field"] .trust-strip { border-bottom: 5px solid var(--accent); }
+main[data-theme="field"] .about-stat strong { font-family: var(--display); }
+
 @media (max-width: 900px) {
   .concept-bar { height: auto; justify-content: flex-start; max-width: 100vw; overflow-x: auto; padding: 10px 14px; }
   .concept-label { display: none; }
@@ -446,6 +512,14 @@ main[data-theme="warm"] .project-image { margin: 28px; border-radius: 18px; }
   .areas { grid-column: 1 / -1; }
   .faq, .estimate { grid-template-columns: 1fr; }
   .faq { gap: 50px; }
+
+  main[data-theme="ironclad"] .hero > img,
+  main[data-theme="field"] .hero > img { clip-path: none; width: 100%; }
+  main[data-theme="ironclad"] .hero-shade { background: linear-gradient(90deg, rgba(12,14,16,.93), rgba(12,14,16,.48)); }
+  main[data-theme="field"] .hero-shade { background: linear-gradient(90deg, rgba(9,32,76,.94), rgba(9,32,76,.5)); }
+  main[data-theme="ironclad"] .hero-copy,
+  main[data-theme="field"] .hero-copy { left: 7%; max-width: 680px; right: 7%; }
+  main[data-theme="field"] .hero-proof { left: 0; right: 0; }
 }
 
 @media (max-width: 600px) {
@@ -503,6 +577,8 @@ main[data-theme="warm"] .project-image { margin: 28px; border-radius: 18px; }
   .service-card { min-height: 220px; }
   .project-image { min-height: 320px; }
   main[data-theme="warm"] .project-image { margin: 14px; }
+  main[data-theme="ironclad"] .hero-copy,
+  main[data-theme="field"] .hero-copy { max-width: none; right: auto; width: min(300px, calc(100vw - 64px)); }
   .project-copy { padding: 50px 7%; }
   .review-heading { grid-template-columns: 1fr; }
   .big-rating { border-left: 0; border-top: 1px solid var(--line); padding: 25px 0 0; }
