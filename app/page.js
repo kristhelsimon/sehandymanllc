@@ -480,7 +480,7 @@ export default function Home() {
 
         <section className="project-story" id="work">
           <div className="project-image">
-            <img src="/hero-warm-modern.png" alt="Handyman completing custom kitchen cabinetry" />
+            <img src="/handyman-listening.webp" alt="Handyman listening to a homeowner discuss her project" />
             <span>Craftsmanship you can see</span>
           </div>
           <div className="project-copy">
