@@ -77,24 +77,28 @@ const reviews = [
       "Various members of my family and I have used SEHandyman, aka Jaime, for years. He is competent, flexible, and reliable. When there was a construction flaw in my 45 year old condominium, he quickly designed a remedy so my bathroom exhaust fan actually went out of the building, not into the crawl space. He encountered an unexpected problem and fixed it. I have recommended him to many neighbors, who are equally satisfied.",
     name: "Jody McPeak",
     initials: "JM",
+    avatar: "/reviewers/jody-mcpeak.png",
   },
   {
     quote:
       "Highly recommend SE Handyman! Jamie’s the best — passionate, thoughtful, and takes pride in doing things right.\n\nMy husband and I met him three years ago during our new home inspection, back when he was the GM at Toll Brothers. He gave us clear, honest advice on everything — framing, tankless water heaters, HVAC settings, attic layout, etc.\n\nOnce I bought a receiver and had no clue how to connect it to the ceiling speakers. Jamie offered to swing by after work, got it all set up in no time, and we ended up hanging out with a couple of beers and some music. Super chill.\n\nWe feel lucky to have met him, and now he’s our go-to for anything around the house.",
     name: "Xun",
     initials: "X",
+    avatar: "/reviewers/xun.png",
   },
   {
     quote:
       "Jaime is our long term choice of handyman works at home. He's the best and I'm very happy to have Jaime come over for different sort of work done in our home.",
     name: "Raymond Yin",
     initials: "RY",
+    avatar: "/reviewers/raymond-yin.png",
   },
   {
     quote:
       "Jaime did a great job fixing our electrical issues in our house, now he is the guy we call anytime we need help. Very friendly, professional, and results.",
     name: "Javi Bushido",
     initials: "JB",
+    avatar: "/reviewers/javi-bushido.png",
   },
 ];
 
@@ -465,7 +469,13 @@ export default function Home() {
                           </button>
                         )}
                         <footer>
-                          <span>{review.initials}</span>
+                          <span className="review-avatar">
+                            {review.avatar ? (
+                              <img src={review.avatar} alt={`${review.name} profile`} />
+                            ) : (
+                              review.initials
+                            )}
+                          </span>
                           <div><strong>{review.name}</strong><small>Google reviewer</small></div>
                           <i>G</i>
                         </footer>
