@@ -10,10 +10,10 @@ const concepts = {
     eyebrow: "Seattle & Eastside · Since 2011",
     title: "Your home, handled with care.",
     intro:
-      "Trusted craftsmanship for repairs, upgrades, and everything in between. One reliable team, from the first call to the final walkthrough.",
+      "Professional, safe, and reliable handyman service for repairs, upgrades, and everything in between—delivered with care from the first call to the final walkthrough.",
     primary: "Request a free estimate",
     secondary: "Explore our services",
-    proof: ["Licensed & insured", "Locally owned", "15+ years serving Seattle"],
+    proof: ["Licensed, bonded & insured", "Seattle & Eastside", "Serving homeowners since 2011"],
     image: "/hero-heritage.png",
   },
   craft: {
@@ -107,19 +107,31 @@ const reviewSlides = [reviews.slice(0, 2), reviews.slice(2, 4)];
 const faqs = [
   [
     "What types of projects do you handle?",
-    "We handle electrical work, drywall and painting, doors and windows, carpentry, finish work, and remodels—from focused repairs to larger room updates.",
+    "We handle electrical work and lighting, appliance installations, drywall and painting, doors and windows, carpentry and finish work, flooring, and kitchen or bathroom remodeling—from minor fixes to full upgrades.",
   ],
   [
     "How much does handyman service cost?",
     "Pricing depends on the work involved. We provide a clear estimate before work begins so you understand the scope and cost.",
   ],
   [
-    "What areas do you serve?",
-    "We serve Seattle and communities across the Eastside, including Bellevue, Kirkland, Redmond, and nearby areas.",
+    "Are you licensed, bonded, and insured?",
+    "Yes. S & E Handyman is fully licensed, bonded, and insured. We take safety and professionalism seriously so you can feel confident about the work being completed in your home.",
   ],
   [
-    "Are you licensed and insured?",
-    "Yes. S & E Handyman is licensed and insured, with professional service you can feel confident bringing into your home.",
+    "How do I request a quote or schedule a job?",
+    "Call us at (206) 670-3045 or email sehandymanllc@gmail.com and tell us what you need. We will discuss the project, provide a free estimate, and help schedule the work.",
+  ],
+  [
+    "Do you offer emergency or same-day service?",
+    "We do our best to accommodate urgent repairs and prioritize emergency requests whenever possible. Availability depends on the job and current schedule; regular hours are Monday through Saturday, 7am to 7pm.",
+  ],
+  [
+    "What areas do you serve?",
+    "We proudly serve homeowners throughout Seattle and the Eastside, including Bellevue, Kirkland, Redmond, and surrounding communities.",
+  ],
+  [
+    "Can I combine multiple tasks in one visit?",
+    "Absolutely. Bundling small repairs or maintenance tasks into one service call is a convenient way to save time and get more of your list completed efficiently.",
   ],
 ];
 
@@ -254,7 +266,7 @@ export default function Home() {
 
       <div className="site-shell">
         <div className="utility">
-          <p>Need handyman help? We’re ready.</p>
+          <p>Available Monday–Saturday · 7am–7pm</p>
           <div className="utility-contact">
             <a className="utility-link mobile" href="tel:2066703045">
               <Icon name="phone" />
@@ -386,8 +398,8 @@ export default function Home() {
               <h2>One trusted team.<br />A home of possibilities.</h2>
             </div>
             <p>
-              Skip the contractor juggling. We bring the right skill and a
-              thoughtful approach to projects throughout your home.
+              From small repairs to full-room improvements, our skilled team
+              delivers dependable work with safety, detail, and your satisfaction in mind.
             </p>
           </div>
           <div className="service-grid">
@@ -419,7 +431,7 @@ export default function Home() {
               show up prepared, protect your home, and keep you informed.
             </p>
             <ul>
-              <li><Icon name="check" /><span><strong>Straightforward scope</strong>No vague plans or surprise add-ons.</span></li>
+              <li><Icon name="check" /><span><strong>Clear, honest estimates</strong>Know the scope and cost before work begins.</span></li>
               <li><Icon name="check" /><span><strong>Respect for your space</strong>Careful prep and a clean finish.</span></li>
               <li><Icon name="check" /><span><strong>Details that hold up</strong>Quality work, even where you don’t see it.</span></li>
             </ul>
@@ -506,11 +518,12 @@ export default function Home() {
           </div>
           <div className="about-copy">
             <span className="kicker">Local since 2011</span>
-            <h2>The capable neighbor<br />you’re glad you called.</h2>
+            <h2>Quality and reliability<br />in every project.</h2>
             <p>
-              S &amp; E Handyman helps Seattle and Eastside homeowners take
-              care of repairs, finish the list, and bring bigger ideas to
-              life—with reliable communication and pride in every detail.
+              S &amp; E Handyman provides professional, safe, and efficient service
+              across Seattle and the Eastside. From a small repair to a full remodel,
+              we listen, communicate clearly, and complete every job with care,
+              respect, and attention to detail. No job is too small.
             </p>
           </div>
           <div className="areas">
@@ -523,7 +536,11 @@ export default function Home() {
           <div className="faq-intro">
             <span className="kicker">Good to know</span>
             <h2>A few common questions.</h2>
-            <p>Still deciding? We’re happy to talk through your project.</p>
+            <p>
+              Still deciding? Call <a href="tel:2066703045">(206) 670-3045</a> or
+              email <a href="mailto:sehandymanllc@gmail.com">sehandymanllc@gmail.com</a>.
+              We’re happy to talk through your project.
+            </p>
           </div>
           <div className="faq-list">
             {faqs.map(([question, answer], index) => (
