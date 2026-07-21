@@ -13,7 +13,7 @@ const concepts = {
       "Trusted craftsmanship for repairs, upgrades, and everything in between. One reliable team, from the first call to the final walkthrough.",
     primary: "Request a free estimate",
     secondary: "Explore our services",
-    proof: ["Licensed & insured", "Locally owned", "14+ years serving Seattle"],
+    proof: ["Licensed & insured", "Locally owned", "15+ years serving Seattle"],
     image: "/hero-heritage.png",
   },
   craft: {
@@ -74,21 +74,27 @@ const services = [
 const reviews = [
   {
     quote:
-      "S & E was responsive, professional, and very detail-oriented. I’ll definitely hire them again.",
-    name: "Olivia A.",
-    place: "Seattle",
+      "Various members of my family and I have used SEHandyman, aka Jaime, for years. He is competent, flexible, and reliable. When there was a construction flaw in my 45 year old condominium, he quickly designed a remedy so my bathroom exhaust fan actually went out of the building, not into the crawl space. He encountered an unexpected problem and fixed it. I have recommended him to many neighbors, who are equally satisfied.",
+    name: "Jody McPeak",
+    initials: "JM",
   },
   {
     quote:
-      "Everything was done with care and skill. Top-notch service all the way.",
-    name: "Daniel M.",
-    place: "Bellevue",
+      "Highly recommend SE Handyman! Jamie’s the best — passionate, thoughtful, and takes pride in doing things right.\n\nMy husband and I met him three years ago during our new home inspection, back when he was the GM at Toll Brothers. He gave us clear, honest advice on everything — framing, tankless water heaters, HVAC settings, attic layout, etc.\n\nOnce I bought a receiver and had no clue how to connect it to the ceiling speakers. Jamie offered to swing by after work, got it all set up in no time, and we ended up hanging out with a couple of beers and some music. Super chill.\n\nWe feel lucky to have met him, and now he’s our go-to for anything around the house.",
+    name: "Xun",
+    initials: "X",
   },
   {
     quote:
-      "They were super helpful during our move-out maintenance. The house looked perfect.",
-    name: "Matthew M.",
-    place: "Kirkland",
+      "Jaime is our long term choice of handyman works at home. He's the best and I'm very happy to have Jaime come over for different sort of work done in our home.",
+    name: "Raymond Yin",
+    initials: "RY",
+  },
+  {
+    quote:
+      "Jaime did a great job fixing our electrical issues in our house, now he is the guy we call anytime we need help. Very friendly, professional, and results.",
+    name: "Javi Bushido",
+    initials: "JB",
   },
 ];
 
@@ -220,9 +226,13 @@ export default function Home() {
         <div className="utility">
           <p>Need handyman help? We’re ready.</p>
           <div className="utility-contact">
-            <a className="utility-link" href="tel:2066703045">
+            <a className="utility-link mobile" href="tel:2066703045">
               <Icon name="phone" />
-              <span><small>Call us</small>(206) 670-3045</span>
+              <span><small>Mobile</small>(206) 670-3045</span>
+            </a>
+            <a className="utility-link office" href="tel:2064919633">
+              <Icon name="phone" />
+              <span><small>Office</small>(206) 491-9633</span>
             </a>
             <a className="utility-link email" href="mailto:sehandymanllc@gmail.com">
               <Icon name="mail" />
@@ -287,7 +297,7 @@ export default function Home() {
             <p>{concept.intro}</p>
             <a
               className="hero-rating"
-              href="https://g.page/r/CZ1YAAuj68JmEAI/review"
+              href="https://maps.app.goo.gl/pdkY8Qmwz6BaGovr7"
               target="_blank"
               rel="noreferrer"
               aria-label="View S and E Handyman reviews on Google"
@@ -320,29 +330,17 @@ export default function Home() {
           <div className="marquee-track">
             {[0, 1].map((group) => (
               <div className="marquee-group" aria-hidden={group === 1} key={group}>
+                <div className="trust-image-badge"><img src="/badges/serving-since-2011.png" alt="Serving since 2011" /></div>
+                <div className="trust-image-badge google"><img src="/badges/google-reviews.png" alt="Five-star Google reviews" /></div>
+                <div className="trust-image-badge"><img src="/badges/quality-approved.png" alt="Quality control approved" /></div>
+                <div className="trust-image-badge"><img src="/badges/warranty.png" alt="Warranty badge" /></div>
                 <div className="trust-badge">
                   <i><Icon name="check" /></i>
                   <span><small>Fully protected</small>Licensed · Bonded · Insured</span>
                 </div>
                 <div className="trust-badge">
-                  <i className="badge-number">14+</i>
-                  <span><small>Proven experience</small>Serving since 2011</span>
-                </div>
-                <div className="trust-badge">
-                  <i className="badge-star">★</i>
-                  <span><small>Customer rated</small>5.0 Google Rating</span>
-                </div>
-                <div className="trust-badge">
                   <i><Icon name="home" /></i>
                   <span><small>Proudly local</small>Seattle &amp; Eastside</span>
-                </div>
-                <div className="trust-badge">
-                  <i><Icon name="phone" /></i>
-                  <span><small>Easy scheduling</small>Mon–Sat · 7am–7pm</span>
-                </div>
-                <div className="trust-badge">
-                  <i><Icon name="check" /></i>
-                  <span><small>Know before we start</small>Free clear estimates</span>
                 </div>
               </div>
             ))}
@@ -418,6 +416,9 @@ export default function Home() {
             </div>
             <div className="big-rating">
               <strong>5.0</strong><span>★★★★★</span><small>Based on local Google reviews</small>
+              <a href="https://maps.app.goo.gl/pdkY8Qmwz6BaGovr7" target="_blank" rel="noreferrer">
+                Leave us a review <Icon name="arrow" />
+              </a>
             </div>
           </div>
           <div className="review-grid">
@@ -426,8 +427,8 @@ export default function Home() {
                 <span className="quote-mark">“</span>
                 <p>{review.quote}</p>
                 <footer>
-                  <span>{review.name.charAt(0)}</span>
-                  <div><strong>{review.name}</strong><small>{review.place} homeowner</small></div>
+                  <span>{review.initials}</span>
+                  <div><strong>{review.name}</strong><small>Google reviewer</small></div>
                   <i>G</i>
                 </footer>
               </article>
@@ -437,7 +438,7 @@ export default function Home() {
 
         <section className="about section" id="about">
           <div className="about-stat">
-            <strong>14+</strong>
+            <strong>15+</strong>
             <span>years of dependable local service</span>
           </div>
           <div className="about-copy">
@@ -508,7 +509,10 @@ export default function Home() {
             <a href="#about">About</a>
           </div>
           <div className="footer-contact">
+            <small>Mobile</small>
             <a href="tel:2066703045">(206) 670-3045</a>
+            <small>Office</small>
+            <a href="tel:2064919633">(206) 491-9633</a>
             <span>sehandymanllc@gmail.com</span>
           </div>
           <div className="footer-bottom">
