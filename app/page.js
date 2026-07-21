@@ -46,28 +46,40 @@ const concepts = {
 
 const services = [
   {
+    icon: "ruler",
+    title: "Finish Carpentry",
+    text: "Trim, doors, shelving, built-ins, and detailed woodwork made to fit your home.",
+    tag: "Trim → built-ins",
+  },
+  {
     icon: "bolt",
-    title: "Electrical",
-    text: "Fixtures, outlets, switches, troubleshooting, and careful installations.",
-    tag: "Small fixes → upgrades",
+    title: "Electrical & Lighting",
+    text: "Lighting, fixtures, outlets, switches, troubleshooting, and careful electrical upgrades.",
+    tag: "Fixtures → upgrades",
+  },
+  {
+    icon: "install",
+    title: "Installations",
+    text: "Appliances, fixtures, hardware, shelving, and other household items installed correctly.",
+    tag: "Appliances → hardware",
+  },
+  {
+    icon: "tool",
+    title: "Maintenance & Repairs",
+    text: "Everyday fixes, home maintenance, punch lists, and urgent repairs handled efficiently.",
+    tag: "Quick fixes → upkeep",
   },
   {
     icon: "wall",
-    title: "Drywall & Paint",
-    text: "Patches, texture matching, fresh paint, and seamless wall repairs.",
-    tag: "Repair → refresh",
-  },
-  {
-    icon: "ruler",
-    title: "Carpentry",
-    text: "Trim, doors, shelving, built-ins, and detail work made to fit.",
-    tag: "Finish → custom",
+    title: "Drywall & Painting",
+    text: "Drywall patches, texture matching, interior painting, and seamless wall repairs.",
+    tag: "Patch → refresh",
   },
   {
     icon: "home",
     title: "Remodeling",
-    text: "Smart updates and full-room transformations, managed start to finish.",
-    tag: "Kitchen → whole room",
+    text: "Kitchen, bathroom, and full-room improvements managed with care from start to finish.",
+    tag: "Kitchen → bathroom",
   },
 ];
 
@@ -127,7 +139,7 @@ const faqs = [
   ],
   [
     "What areas do you serve?",
-    "We proudly serve homeowners throughout Seattle and the Eastside, including Bellevue, Kirkland, Redmond, and surrounding communities.",
+    "We proudly serve homeowners throughout Seattle and the Eastside, including surrounding neighborhoods.",
   ],
   [
     "Can I combine multiple tasks in one visit?",
@@ -148,6 +160,15 @@ function Icon({ name }) {
         <path d="m4 16 12-12 4 4L8 20H4v-4Z" />
         <path d="m13 7 4 4M10 10l2 2M7 13l4 4" />
       </>
+    ),
+    install: (
+      <>
+        <path d="M12 3v12M8 7l4-4 4 4" />
+        <path d="M5 14v6h14v-6" />
+      </>
+    ),
+    tool: (
+      <path d="M14.7 6.3a4 4 0 0 1-5 5L4 17l3 3 5.7-5.7a4 4 0 0 1 5-5l-3 3-3-3 3-3Z" />
     ),
     home: (
       <>

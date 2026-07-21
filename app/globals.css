@@ -289,8 +289,8 @@ header nav a:hover { color: var(--accent); }
   margin: 0;
 }
 .section-heading > p { color: var(--muted); font-size: 13px; line-height: 1.8; margin: 0 0 5px; max-width: 430px; }
-.service-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
-.service-card { border: 1px solid var(--line); margin-left: -1px; min-height: 315px; padding: 32px; position: relative; transition: .3s; }
+.service-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+.service-card { border: 1px solid var(--line); margin-left: -1px; margin-top: -1px; min-height: 295px; padding: 32px; position: relative; transition: .3s; }
 .service-card:hover { background: var(--surface); box-shadow: 0 20px 45px #28312814; transform: translateY(-7px); z-index: 2; }
 .service-top { align-items: center; display: flex; justify-content: space-between; }
 .service-top i { align-items: center; background: var(--accent-soft); border-radius: var(--radius); color: var(--accent); display: flex; height: 46px; justify-content: center; width: 46px; }
