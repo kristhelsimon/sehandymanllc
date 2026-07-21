@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const concepts = {
   heritage: {
@@ -98,6 +98,8 @@ const reviews = [
   },
 ];
 
+const reviewSlides = [reviews.slice(0, 2), reviews.slice(2, 4)];
+
 const faqs = [
   [
     "What types of projects do you handle?",
@@ -183,6 +185,9 @@ export default function Home() {
   const [active, setActive] = useState("heritage");
   const [menu, setMenu] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
+  const [reviewPage, setReviewPage] = useState(0);
+  const [reviewsPaused, setReviewsPaused] = useState(false);
+  const reviewTouchStart = useRef(null);
   const concept = concepts[active];
 
   useEffect(() => {
@@ -190,12 +195,31 @@ export default function Home() {
     if (key && concepts[key]) setActive(key);
   }, []);
 
+  useEffect(() => {
+    if (reviewsPaused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const timer = window.setInterval(() => {
+      setReviewPage((page) => (page + 1) % reviewSlides.length);
+    }, 6500);
+    return () => window.clearInterval(timer);
+  }, [reviewsPaused]);
+
   function selectConcept(key) {
     setActive(key);
     const url = new URL(window.location.href);
     url.searchParams.set("concept", key);
     window.history.replaceState({}, "", url);
     window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function moveReviews(direction) {
+    setReviewPage((page) => (page + direction + reviewSlides.length) % reviewSlides.length);
+  }
+
+  function finishReviewSwipe(event) {
+    if (reviewTouchStart.current === null) return;
+    const distance = event.changedTouches[0].clientX - reviewTouchStart.current;
+    if (Math.abs(distance) > 45) moveReviews(distance > 0 ? -1 : 1);
+    reviewTouchStart.current = null;
   }
 
   return (
@@ -343,11 +367,6 @@ export default function Home() {
 
         <section className="trust-strip">
           <p><strong>Trusted in homes across</strong> Seattle &amp; the Eastside</p>
-          <div className="rating">
-            <span>★★★★★</span>
-            <strong>5.0</strong>
-            <small>Google rating</small>
-          </div>
           <p className="phone-link">
             <Icon name="phone" />
             <span>Prefer to talk? <a href="tel:2066703045">(206) 670-3045</a></span>
@@ -405,8 +424,8 @@ export default function Home() {
         <section className="reviews section" id="reviews">
           <div className="section-heading review-heading">
             <div>
-              <span className="kicker">Neighbor recommended</span>
-              <h2>Work people feel<br />good recommending.</h2>
+              <span className="kicker">Google reviews</span>
+              <h2>What Seattle &amp; Eastside<br />homeowners are saying about us.</h2>
             </div>
             <div className="big-rating">
               <strong>5.0</strong><span>★★★★★</span><small>Based on local Google reviews</small>
@@ -415,18 +434,43 @@ export default function Home() {
               </a>
             </div>
           </div>
-          <div className="review-grid">
-            {reviews.map((review) => (
-              <article key={review.name}>
-                <span className="quote-mark">“</span>
-                <p>{review.quote}</p>
-                <footer>
-                  <span>{review.initials}</span>
-                  <div><strong>{review.name}</strong><small>Google reviewer</small></div>
-                  <i>G</i>
-                </footer>
-              </article>
-            ))}
+          <div
+            className="review-carousel"
+            onMouseEnter={() => setReviewsPaused(true)}
+            onMouseLeave={() => setReviewsPaused(false)}
+            onTouchStart={(event) => { reviewTouchStart.current = event.touches[0].clientX; }}
+            onTouchEnd={finishReviewSwipe}
+          >
+            <div className="review-viewport">
+              <div className="review-track" style={{ transform: `translateX(-${reviewPage * 100}%)` }}>
+                {reviewSlides.map((slide, slideIndex) => (
+                  <div className="review-slide" key={slideIndex} aria-hidden={reviewPage !== slideIndex}>
+                    {slide.map((review) => (
+                      <article key={review.name}>
+                        <span className="quote-mark">“</span>
+                        <p>{review.quote}</p>
+                        <footer>
+                          <span>{review.initials}</span>
+                          <div><strong>{review.name}</strong><small>Google reviewer</small></div>
+                          <i>G</i>
+                        </footer>
+                      </article>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <button className="review-arrow previous" onClick={() => moveReviews(-1)} aria-label="Show previous reviews">
+              <Icon name="arrow" />
+            </button>
+            <button className="review-arrow next" onClick={() => moveReviews(1)} aria-label="Show next reviews">
+              <Icon name="arrow" />
+            </button>
+            <div className="review-pagination" aria-label="Review pages">
+              {reviewSlides.map((_, index) => (
+                <button key={index} className={reviewPage === index ? "active" : ""} onClick={() => setReviewPage(index)} aria-label={`Show review page ${index + 1}`} />
+              ))}
+            </div>
           </div>
         </section>
 
