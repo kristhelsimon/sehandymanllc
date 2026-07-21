@@ -187,6 +187,7 @@ export default function Home() {
   const [openFaq, setOpenFaq] = useState(0);
   const [reviewPage, setReviewPage] = useState(0);
   const [reviewsPaused, setReviewsPaused] = useState(false);
+  const [expandedReview, setExpandedReview] = useState(null);
   const reviewTouchStart = useRef(null);
   const concept = concepts[active];
 
@@ -196,12 +197,12 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (reviewsPaused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (reviewsPaused || expandedReview || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const timer = window.setInterval(() => {
       setReviewPage((page) => (page + 1) % reviewSlides.length);
     }, 6500);
     return () => window.clearInterval(timer);
-  }, [reviewsPaused]);
+  }, [reviewsPaused, expandedReview]);
 
   function selectConcept(key) {
     setActive(key);
@@ -212,6 +213,7 @@ export default function Home() {
   }
 
   function moveReviews(direction) {
+    setExpandedReview(null);
     setReviewPage((page) => (page + direction + reviewSlides.length) % reviewSlides.length);
   }
 
@@ -446,12 +448,22 @@ export default function Home() {
                 {reviewSlides.map((slide, slideIndex) => (
                   <div className="review-slide" key={slideIndex} aria-hidden={reviewPage !== slideIndex}>
                     {slide.map((review) => (
-                      <article key={review.name}>
+                      <article className={expandedReview === review.name ? "expanded" : ""} key={review.name}>
                         <div className="review-card-top">
                           <span className="quote-mark">“</span>
                           <span className="review-card-stars" aria-label="Five out of five stars">★★★★★</span>
                         </div>
                         <p>{review.quote}</p>
+                        {review.quote.length > 260 && (
+                          <button
+                            className="review-more"
+                            onClick={() => setExpandedReview(expandedReview === review.name ? null : review.name)}
+                            aria-expanded={expandedReview === review.name}
+                          >
+                            {expandedReview === review.name ? "See less" : "See more"}
+                            <span>{expandedReview === review.name ? "−" : "+"}</span>
+                          </button>
+                        )}
                         <footer>
                           <span>{review.initials}</span>
                           <div><strong>{review.name}</strong><small>Google reviewer</small></div>
@@ -471,7 +483,7 @@ export default function Home() {
             </button>
             <div className="review-pagination" aria-label="Review pages">
               {reviewSlides.map((_, index) => (
-                <button key={index} className={reviewPage === index ? "active" : ""} onClick={() => setReviewPage(index)} aria-label={`Show review page ${index + 1}`} />
+                <button key={index} className={reviewPage === index ? "active" : ""} onClick={() => { setExpandedReview(null); setReviewPage(index); }} aria-label={`Show review page ${index + 1}`} />
               ))}
             </div>
           </div>
