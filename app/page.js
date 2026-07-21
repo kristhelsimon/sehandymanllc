@@ -447,7 +447,10 @@ export default function Home() {
                   <div className="review-slide" key={slideIndex} aria-hidden={reviewPage !== slideIndex}>
                     {slide.map((review) => (
                       <article key={review.name}>
-                        <span className="quote-mark">“</span>
+                        <div className="review-card-top">
+                          <span className="quote-mark">“</span>
+                          <span className="review-card-stars" aria-label="Five out of five stars">★★★★★</span>
+                        </div>
                         <p>{review.quote}</p>
                         <footer>
                           <span>{review.initials}</span>
