@@ -50,36 +50,43 @@ const services = [
     title: "Finish Carpentry",
     text: "Trim, doors, shelving, built-ins, and detailed woodwork made to fit your home.",
     tag: "Trim → built-ins",
+    image: "/services/finish-carpentry.webp",
   },
   {
     icon: "bolt",
     title: "Electrical & Lighting",
     text: "Lighting, fixtures, outlets, switches, troubleshooting, and careful electrical upgrades.",
     tag: "Fixtures → upgrades",
+    image: "/services/electrical-lighting.webp",
   },
   {
     icon: "install",
     title: "Installations",
     text: "Appliances, fixtures, hardware, shelving, and other household items installed correctly.",
     tag: "Appliances → hardware",
+    image: "/services/installations.webp",
   },
   {
     icon: "tool",
     title: "Maintenance & Repairs",
     text: "Everyday fixes, home maintenance, punch lists, and urgent repairs handled efficiently.",
     tag: "Quick fixes → upkeep",
+    image: "/services/maintenance-repairs.webp",
   },
   {
     icon: "wall",
     title: "Drywall & Painting",
     text: "Drywall patches, texture matching, interior painting, and seamless wall repairs.",
     tag: "Patch → refresh",
+    image: "/services/drywall-painting.webp",
+    imagePosition: "35% center",
   },
   {
     icon: "home",
     title: "Remodeling",
     text: "Kitchen, bathroom, and full-room improvements managed with care from start to finish.",
     tag: "Kitchen → bathroom",
+    image: "/services/remodeling.webp",
   },
 ];
 
@@ -426,6 +433,13 @@ export default function Home() {
           <div className="service-grid">
             {services.map((service, index) => (
               <article className="service-card" key={service.title}>
+                <img
+                  className="service-background"
+                  src={service.image}
+                  alt=""
+                  aria-hidden="true"
+                  style={{ objectPosition: service.imagePosition || "center" }}
+                />
                 <div className="service-top">
                   <i><Icon name={service.icon} /></i>
                   <span>0{index + 1}</span>
