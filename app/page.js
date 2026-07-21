@@ -2,6 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+const assetPath = (path) => `${basePath}${path}`;
+
 const concepts = {
   heritage: {
     number: "01",
@@ -14,7 +17,7 @@ const concepts = {
     primary: "Request a free estimate",
     secondary: "Explore our services",
     proof: ["Licensed, bonded & insured", "Seattle & Eastside", "Serving homeowners since 2011"],
-    image: "/hero-heritage.png",
+    image: assetPath("/hero-heritage.png"),
   },
   craft: {
     number: "02",
@@ -27,7 +30,7 @@ const concepts = {
     primary: "Start your project",
     secondary: "See what we do",
     proof: ["Clear estimates", "Skilled workmanship", "No project runaround"],
-    image: "/hero-craft-first.png",
+    image: assetPath("/hero-craft-first.png"),
   },
   warm: {
     number: "03",
@@ -40,7 +43,7 @@ const concepts = {
     primary: "Tell us about your project",
     secondary: "View recent work",
     proof: ["Friendly local team", "Thoughtful project care", "Quality without shortcuts"],
-    image: "/hero-warm-modern.png",
+    image: assetPath("/hero-warm-modern.png"),
   },
   ironclad: {
     number: "04",
@@ -53,7 +56,7 @@ const concepts = {
     primary: "Get your free estimate",
     secondary: "View our services",
     proof: ["Licensed, bonded & insured", "Clear, honest estimates", "Serving since 2011"],
-    image: "/hero-craft-first.png",
+    image: assetPath("/hero-craft-first.png"),
   },
   field: {
     number: "05",
@@ -66,7 +69,7 @@ const concepts = {
     primary: "Request a free quote",
     secondary: "See what we handle",
     proof: ["Six service specialties", "Monday–Saturday · 7am–7pm", "No job too small"],
-    image: "/hero-heritage.png",
+    image: assetPath("/hero-heritage.png"),
   },
 };
 
@@ -76,35 +79,35 @@ const services = [
     title: "Finish Carpentry",
     text: "Trim, doors, shelving, built-ins, and detailed woodwork made to fit your home.",
     tag: "Trim → built-ins",
-    image: "/services/finish-carpentry.webp",
+    image: assetPath("/services/finish-carpentry.webp"),
   },
   {
     icon: "bolt",
     title: "Electrical & Lighting",
     text: "Lighting, fixtures, outlets, switches, troubleshooting, and careful electrical upgrades.",
     tag: "Fixtures → upgrades",
-    image: "/services/electrical-lighting.webp",
+    image: assetPath("/services/electrical-lighting.webp"),
   },
   {
     icon: "install",
     title: "Installations",
     text: "Appliances, fixtures, hardware, shelving, and other household items installed correctly.",
     tag: "Appliances → hardware",
-    image: "/services/installations.webp",
+    image: assetPath("/services/installations.webp"),
   },
   {
     icon: "tool",
     title: "Maintenance & Repairs",
     text: "Everyday fixes, home maintenance, punch lists, and urgent repairs handled efficiently.",
     tag: "Quick fixes → upkeep",
-    image: "/services/maintenance-repairs.webp",
+    image: assetPath("/services/maintenance-repairs.webp"),
   },
   {
     icon: "wall",
     title: "Drywall & Painting",
     text: "Drywall patches, texture matching, interior painting, and seamless wall repairs.",
     tag: "Patch → refresh",
-    image: "/services/drywall-painting.webp",
+    image: assetPath("/services/drywall-painting.webp"),
     imagePosition: "35% center",
   },
   {
@@ -112,7 +115,7 @@ const services = [
     title: "Remodeling",
     text: "Kitchen, bathroom, and full-room improvements managed with care from start to finish.",
     tag: "Kitchen → bathroom",
-    image: "/services/remodeling.webp",
+    image: assetPath("/services/remodeling.webp"),
   },
 ];
 
@@ -122,28 +125,28 @@ const reviews = [
       "Various members of my family and I have used SEHandyman, aka Jaime, for years. He is competent, flexible, and reliable. When there was a construction flaw in my 45 year old condominium, he quickly designed a remedy so my bathroom exhaust fan actually went out of the building, not into the crawl space. He encountered an unexpected problem and fixed it. I have recommended him to many neighbors, who are equally satisfied.",
     name: "Jody McPeak",
     initials: "JM",
-    avatar: "/reviewers/jody-mcpeak.png",
+    avatar: assetPath("/reviewers/jody-mcpeak.png"),
   },
   {
     quote:
       "Highly recommend SE Handyman! Jamie’s the best — passionate, thoughtful, and takes pride in doing things right.\n\nMy husband and I met him three years ago during our new home inspection, back when he was the GM at Toll Brothers. He gave us clear, honest advice on everything — framing, tankless water heaters, HVAC settings, attic layout, etc.\n\nOnce I bought a receiver and had no clue how to connect it to the ceiling speakers. Jamie offered to swing by after work, got it all set up in no time, and we ended up hanging out with a couple of beers and some music. Super chill.\n\nWe feel lucky to have met him, and now he’s our go-to for anything around the house.",
     name: "Xun",
     initials: "X",
-    avatar: "/reviewers/xun.png",
+    avatar: assetPath("/reviewers/xun.png"),
   },
   {
     quote:
       "Jaime is our long term choice of handyman works at home. He's the best and I'm very happy to have Jaime come over for different sort of work done in our home.",
     name: "Raymond Yin",
     initials: "RY",
-    avatar: "/reviewers/raymond-yin.png",
+    avatar: assetPath("/reviewers/raymond-yin.png"),
   },
   {
     quote:
       "Jaime did a great job fixing our electrical issues in our house, now he is the guy we call anytime we need help. Very friendly, professional, and results.",
     name: "Javi Bushido",
     initials: "JB",
-    avatar: "/reviewers/javi-bushido.png",
+    avatar: assetPath("/reviewers/javi-bushido.png"),
   },
 ];
 
@@ -426,12 +429,12 @@ export default function Home() {
           <div className="marquee-track">
             {[0, 1].map((group) => (
               <div className="marquee-group" aria-hidden={group === 1} key={group}>
-                <div className="trust-image-badge"><img src="/badges/serving-since-2011.png" alt="Serving since 2011" /></div>
-                <div className="trust-image-badge google"><img src="/badges/google-reviews.png" alt="Five-star Google reviews" /></div>
-                <div className="trust-image-badge"><img src="/badges/quality-approved.png" alt="Quality control approved" /></div>
-                <div className="trust-image-badge"><img src="/badges/warranty.png" alt="Warranty badge" /></div>
-                <div className="trust-image-badge"><img src="/badges/licensed-bonded-insured.png" alt="Licensed, bonded and insured" /></div>
-                <div className="trust-image-badge seattle"><img src="/badges/seattle-eastside.png" alt="Serving Seattle and the Eastside" /></div>
+                <div className="trust-image-badge"><img src={assetPath("/badges/serving-since-2011.png")} alt="Serving since 2011" /></div>
+                <div className="trust-image-badge google"><img src={assetPath("/badges/google-reviews.png")} alt="Five-star Google reviews" /></div>
+                <div className="trust-image-badge"><img src={assetPath("/badges/quality-approved.png")} alt="Quality control approved" /></div>
+                <div className="trust-image-badge"><img src={assetPath("/badges/warranty.png")} alt="Warranty badge" /></div>
+                <div className="trust-image-badge"><img src={assetPath("/badges/licensed-bonded-insured.png")} alt="Licensed, bonded and insured" /></div>
+                <div className="trust-image-badge seattle"><img src={assetPath("/badges/seattle-eastside.png")} alt="Serving Seattle and the Eastside" /></div>
               </div>
             ))}
           </div>
@@ -480,7 +483,7 @@ export default function Home() {
 
         <section className="project-story" id="work">
           <div className="project-image">
-            <img src="/handyman-listening.webp" alt="Handyman listening to a homeowner discuss her project" />
+            <img src={assetPath("/handyman-listening.webp")} alt="Handyman listening to a homeowner discuss her project" />
             <span>Craftsmanship you can see</span>
           </div>
           <div className="project-copy">
