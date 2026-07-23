@@ -255,19 +255,13 @@ function Brand() {
 }
 
 export default function Home() {
-  const [active, setActive] = useState("heritage");
   const [menu, setMenu] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
   const [reviewPage, setReviewPage] = useState(0);
   const [reviewsPaused, setReviewsPaused] = useState(false);
   const [expandedReview, setExpandedReview] = useState(null);
   const reviewTouchStart = useRef(null);
-  const concept = concepts[active];
-
-  useEffect(() => {
-    const key = new URLSearchParams(window.location.search).get("concept");
-    if (key && concepts[key]) setActive(key);
-  }, []);
+  const concept = concepts.warm;
 
   useEffect(() => {
     if (reviewsPaused || expandedReview || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -276,14 +270,6 @@ export default function Home() {
     }, 6500);
     return () => window.clearInterval(timer);
   }, [reviewsPaused, expandedReview]);
-
-  function selectConcept(key) {
-    setActive(key);
-    const url = new URL(window.location.href);
-    url.searchParams.set("concept", key);
-    window.history.replaceState({}, "", url);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
 
   function moveReviews(direction) {
     setExpandedReview(null);
@@ -297,30 +283,29 @@ export default function Home() {
     reviewTouchStart.current = null;
   }
 
-  return (
-    <main id="top" data-theme={active}>
-      <aside className="concept-bar" aria-label="Design concepts">
-        <div className="concept-label">
-          <span>Website directions</span>
-          <strong>Choose a concept</strong>
-        </div>
-        <div className="concept-tabs">
-          {Object.entries(concepts).map(([key, item]) => (
-            <button
-              key={key}
-              className={active === key ? "active" : ""}
-              onClick={() => selectConcept(key)}
-            >
-              <span>{item.number}</span>
-              <span>
-                <strong>{item.name}</strong>
-                <small>{item.note}</small>
-              </span>
-            </button>
-          ))}
-        </div>
-      </aside>
+  function submitQuote(event) {
+    event.preventDefault();
+    const form = new FormData(event.currentTarget);
+    const name = String(form.get("name") || "").trim();
+    const phone = String(form.get("phone") || "").trim();
+    const email = String(form.get("email") || "").trim();
+    const contact = String(form.get("contact") || "").trim();
+    const message = String(form.get("message") || "").trim();
+    const body = [
+      `Name: ${name || "Not provided"}`,
+      phone ? `Phone: ${phone}` : null,
+      email ? `Email: ${email}` : null,
+      contact ? `Preferred contact: ${contact}` : null,
+      "",
+      "Project details:",
+      message || "Not provided",
+    ].filter((line) => line !== null).join("\n");
 
+    window.location.href = `mailto:sehandymanllc@gmail.com?subject=${encodeURIComponent(`Free quote request from ${name || "website visitor"}`)}&body=${encodeURIComponent(body)}`;
+  }
+
+  return (
+    <main id="top" data-theme="warm">
       <div className="site-shell">
         <div className="utility">
           <p>Available Monday–Saturday · 7am–7pm</p>
@@ -422,7 +407,29 @@ export default function Home() {
               </span>
             ))}
           </div>
-          <div className="hero-index">{concept.number} / 03</div>
+        </section>
+
+        <section className="quick-quote" aria-labelledby="quick-quote-title">
+          <h2 id="quick-quote-title">Get your <strong>FREE Quote</strong></h2>
+          <form onSubmit={submitQuote}>
+            <label>
+              <span className="sr-only">Name</span>
+              <input name="name" type="text" placeholder="Name" autoComplete="name" required />
+            </label>
+            <label>
+              <span className="sr-only">Phone</span>
+              <input name="phone" type="tel" placeholder="Phone" autoComplete="tel" required />
+            </label>
+            <label>
+              <span className="sr-only">Email</span>
+              <input name="email" type="email" placeholder="Email" autoComplete="email" required />
+            </label>
+            <label>
+              <span className="sr-only">How can we help you?</span>
+              <input name="message" type="text" placeholder="How can we help you?" required />
+            </label>
+            <button type="submit">Submit <Icon name="arrow" /></button>
+          </form>
         </section>
 
         <section className="trust-marquee" aria-label="S and E Handyman credentials and service promises">
@@ -452,7 +459,7 @@ export default function Home() {
           <div className="section-heading">
             <div>
               <span className="kicker">What we do</span>
-              <h2>One trusted team.<br />A home of possibilities.</h2>
+              <h2>One trusted team.<br />A home of <span className="mobile-break"><br /></span>possibilities.</h2>
             </div>
             <p>
               From small repairs to full-room improvements, our skilled team
@@ -624,18 +631,18 @@ export default function Home() {
             <h2>What can we take<br />off your list?</h2>
             <p>Tell us a little about the project. We’ll follow up to discuss the details and next steps.</p>
           </div>
-          <form onSubmit={(event) => event.preventDefault()}>
+          <form onSubmit={submitQuote}>
             <label>
               <span>Your name</span>
-              <input type="text" placeholder="Jane Smith" />
+              <input name="name" type="text" placeholder="Jane Smith" autoComplete="name" required />
             </label>
             <label>
               <span>Phone or email</span>
-              <input type="text" placeholder="How should we reach you?" />
+              <input name="contact" type="text" placeholder="How should we reach you?" required />
             </label>
             <label className="wide">
               <span>What do you need help with?</span>
-              <textarea placeholder="A quick description of your project..." />
+              <textarea name="message" placeholder="A quick description of your project..." required />
             </label>
             <button className="button primary" type="submit">
               Request my estimate <Icon name="arrow" />

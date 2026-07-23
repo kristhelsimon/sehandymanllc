@@ -23,6 +23,7 @@ button, input, textarea { font: inherit; }
 button { color: inherit; }
 img { display: block; width: 100%; }
 svg { width: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.sr-only { height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; clip: rect(0, 0, 0, 0); white-space: nowrap; }
 
 main {
   --ink: #1f355b;
@@ -235,6 +236,30 @@ header nav a:hover { color: var(--accent); }
 .hero-proof svg { width: 12px; }
 .hero-index { bottom: 24px; color: var(--ink); font-size: 9px; font-weight: 700; letter-spacing: .18em; position: absolute; right: 8%; }
 
+.quick-quote {
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 45px #26352f1c;
+  display: grid;
+  gap: 26px;
+  grid-template-columns: 185px 1fr;
+  margin: 24px auto;
+  padding: 22px 26px;
+  position: relative;
+  width: 90%;
+  z-index: 5;
+}
+.quick-quote h2 { font: 500 24px/1.05 var(--display); margin: 0; }
+.quick-quote h2 strong { color: var(--accent); display: block; font-style: italic; }
+.quick-quote form { display: grid; gap: 10px; grid-template-columns: .8fr .8fr 1fr 1.25fr auto; }
+.quick-quote label { min-width: 0; }
+.quick-quote input { background: var(--paper); border: 1px solid var(--line); border-radius: calc(var(--radius) * .55); color: var(--ink); height: 48px; outline: 0; padding: 0 14px; width: 100%; }
+.quick-quote input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.quick-quote button { align-items: center; background: var(--accent); border: 0; border-radius: calc(var(--radius) * .55); color: white; cursor: pointer; display: flex; font-size: 10px; font-weight: 700; gap: 12px; justify-content: center; min-height: 48px; padding: 0 19px; text-transform: uppercase; }
+.quick-quote button:hover { background: var(--accent-dark); }
+.quick-quote button svg { width: 14px; }
+
 .trust-marquee {
   background: var(--surface);
   border-bottom: 1px solid var(--line);
@@ -318,6 +343,7 @@ header nav a:hover { color: var(--accent); }
 .services.section { padding-bottom: 75px; padding-top: 75px; }
 .services .section-heading { margin-bottom: 38px; }
 .services h2 { font-size: clamp(38px, 3.6vw, 58px); }
+.mobile-break { display: none; }
 .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
 .service-card { background: var(--ink); border: 1px solid color-mix(in srgb, white 18%, transparent); color: white; isolation: isolate; margin-left: -1px; margin-top: -1px; min-height: 220px; overflow: hidden; padding: 25px 28px; position: relative; transition: .3s; }
 .service-card::before { background: linear-gradient(180deg, rgba(10, 18, 14, .42), rgba(10, 18, 14, .94)); content: ""; inset: 0; position: absolute; z-index: -1; }
@@ -483,6 +509,13 @@ main[data-theme="field"] .section h2, main[data-theme="field"] .project-copy h2,
 main[data-theme="field"] .trust-strip { border-bottom: 5px solid var(--accent); }
 main[data-theme="field"] .about-stat strong { font-family: var(--display); }
 
+@media (max-width: 1100px) {
+  .quick-quote { grid-template-columns: 1fr; }
+  .quick-quote h2 strong { display: inline; margin-left: 5px; }
+  .quick-quote form { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .quick-quote button { grid-column: span 2; }
+}
+
 @media (max-width: 900px) {
   .concept-bar { height: auto; justify-content: flex-start; max-width: 100vw; overflow-x: auto; padding: 10px 14px; }
   .concept-label { display: none; }
@@ -568,11 +601,15 @@ main[data-theme="field"] .about-stat strong { font-family: var(--display); }
   .hero-actions .button { width: 100%; }
   .hero-actions .secondary { display: none; }
   .hero-proof { gap: 4px; padding: 12px 7%; }
+  .quick-quote { margin: 16px auto; padding: 22px; width: calc(100% - 24px); }
+  .quick-quote form { grid-template-columns: 1fr; }
+  .quick-quote button { grid-column: auto; }
   .trust-strip { grid-template-columns: 1fr; }
   .section h2, .project-copy h2, .estimate h2 { font-size: 42px; }
   .section-heading { margin-bottom: 40px; }
   .services.section { padding-bottom: 55px; padding-top: 55px; }
   .services .section-heading { margin-bottom: 30px; }
+  .mobile-break { display: inline; }
   .service-grid { grid-template-columns: 1fr; }
   .service-card { min-height: 220px; }
   .project-image { min-height: 320px; }
