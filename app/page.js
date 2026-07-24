@@ -490,7 +490,7 @@ export default function Home() {
 
         <section className="project-story" id="work">
           <div className="project-image">
-            <img src={assetPath("/handyman-listening.webp")} alt="Handyman listening to a homeowner discuss her project" />
+            <img src={assetPath("/jaime-handyman-listening.webp")} alt="Jaime listening to a homeowner discuss her project" />
             <span>Craftsmanship you can see</span>
           </div>
           <div className="project-copy">
