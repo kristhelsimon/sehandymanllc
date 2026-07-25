@@ -464,7 +464,9 @@ main[data-theme="craft"] .hero-proof i { background: #ffffff2b; color: white; }
 main[data-theme="craft"] .hero-proof > span, main[data-theme="craft"] .hero-index { color: white; }
 main[data-theme="craft"] .service-card h3, main[data-theme="craft"] .project-copy h2 { text-transform: uppercase; }
 main[data-theme="warm"] .hero { margin: 0 2.5%; border-radius: 24px; }
-main[data-theme="warm"] .hero-shade { background: linear-gradient(90deg, rgba(35,45,40,.86), rgba(35,45,40,.45) 47%, rgba(35,45,40,.03)); }
+main[data-theme="warm"] .hero { background: #26352f; }
+main[data-theme="warm"] .hero > img { margin-left: auto; position: absolute; right: 0; width: 72%; }
+main[data-theme="warm"] .hero-shade { background: linear-gradient(90deg, #26352f 0%, rgba(38,53,47,.98) 28%, rgba(38,53,47,.82) 47%, rgba(38,53,47,.08) 76%); }
 main[data-theme="warm"] .hero h1 { font-style: italic; }
 main[data-theme="warm"] .service-card { border-radius: 18px; margin: 6px; }
 main[data-theme="warm"] .project-image { margin: 28px; border-radius: 18px; }
@@ -553,6 +555,8 @@ main[data-theme="field"] .about-stat strong { font-family: var(--display); }
   main[data-theme="ironclad"] .hero-copy,
   main[data-theme="field"] .hero-copy { left: 7%; max-width: 680px; right: 7%; }
   main[data-theme="field"] .hero-proof { left: 0; right: 0; }
+  main[data-theme="warm"] .hero > img { width: 100%; }
+  main[data-theme="warm"] .hero-shade { background: linear-gradient(90deg, rgba(38,53,47,.94), rgba(38,53,47,.48)); }
 }
 
 @media (max-width: 600px) {

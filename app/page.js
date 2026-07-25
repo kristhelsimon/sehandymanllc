@@ -36,14 +36,14 @@ const concepts = {
     number: "03",
     name: "Warm Modern",
     note: "Approachable, calm, residential",
-    eyebrow: "Home projects made easier",
-    title: "A better home starts with the right help.",
+    eyebrow: "Home projects made easier · English & Spanish",
+    title: "A better home starts with someone who listens.",
     intro:
-      "From the repair you keep putting off to the room you’re ready to reimagine, we make home projects feel refreshingly straightforward.",
-    primary: "Tell us about your project",
+      "Work directly with Jaime for thoughtful repairs, upgrades, and remodeling—with clear communication in English or Spanish from the first conversation to the final walkthrough.",
+    primary: "Tell Jaime about your project",
     secondary: "View recent work",
-    proof: ["Friendly local team", "Thoughtful project care", "Quality without shortcuts"],
-    image: assetPath("/hero-warm-modern.png"),
+    proof: ["Work directly with Jaime", "English & Spanish", "Quality without shortcuts"],
+    image: assetPath("/jaime-handyman-listening.svg"),
   },
   ironclad: {
     number: "04",
@@ -181,6 +181,10 @@ const faqs = [
     "Can I combine multiple tasks in one visit?",
     "Absolutely. Bundling small repairs or maintenance tasks into one service call is a convenient way to save time and get more of your list completed efficiently.",
   ],
+  [
+    "Can we discuss my project in Spanish?",
+    "Yes. Jaime is bilingual and can discuss estimates, project details, and questions with you in English or Spanish—whichever feels most comfortable.",
+  ],
 ];
 
 function Icon({ name }) {
@@ -308,7 +312,7 @@ export default function Home() {
     <main id="top" data-theme="warm">
       <div className="site-shell">
         <div className="utility">
-          <p>Available Monday–Saturday · 7am–7pm</p>
+          <p>Monday–Saturday · 7am–7pm · English &amp; Spanish</p>
           <div className="utility-contact">
             <a className="utility-link mobile" href="tel:2066703045">
               <Icon name="phone" />
@@ -370,7 +374,7 @@ export default function Home() {
         </header>
 
         <section className="hero">
-          <img src={concept.image} alt="Quality residential handyman craftsmanship" />
+          <img src={concept.image} alt="Jaime of S and E Handyman speaking with a homeowner" />
           <div className="hero-shade" />
           <div className="hero-copy">
             <div className="eyebrow">
@@ -448,7 +452,7 @@ export default function Home() {
         </section>
 
         <section className="trust-strip">
-          <p><strong>Trusted in homes across</strong> Seattle &amp; the Eastside</p>
+          <p><strong>Welcome in English or Spanish</strong> Serving Seattle &amp; the Eastside since 2011</p>
           <p className="phone-link">
             <Icon name="phone" />
             <span>Prefer to talk? <a href="tel:2066703045">(206) 670-3045</a></span>
@@ -591,10 +595,10 @@ export default function Home() {
             <span className="kicker">Local since 2011</span>
             <h2>Quality and reliability<br />in every project.</h2>
             <p>
-              S &amp; E Handyman provides professional, safe, and efficient service
-              across Seattle and the Eastside. From a small repair to a full remodel,
-              we listen, communicate clearly, and complete every job with care,
-              respect, and attention to detail. No job is too small.
+              Jaime works directly with Seattle and Eastside homeowners to provide
+              professional, safe, and efficient service. From a small repair to a full
+              remodel, he listens, communicates clearly in English or Spanish, and
+              completes every job with care and attention to detail. No job is too small.
             </p>
           </div>
           <div className="areas">
@@ -629,7 +633,7 @@ export default function Home() {
           <div>
             <span className="kicker">Let’s get it done</span>
             <h2>What can we take<br />off your list?</h2>
-            <p>Tell us a little about the project. We’ll follow up to discuss the details and next steps.</p>
+            <p>Tell us about your project in English or Spanish. Jaime will follow up to discuss the details and next steps.</p>
           </div>
           <form onSubmit={submitQuote}>
             <label>
@@ -668,7 +672,7 @@ export default function Home() {
           </div>
           <div className="footer-bottom">
             <span>© 2026 S &amp; E Handyman LLC</span>
-            <span>Licensed · Bonded · Insured</span>
+            <span>Licensed · Bonded · Insured · English &amp; Spanish</span>
           </div>
         </footer>
       </div>
