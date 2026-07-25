@@ -36,13 +36,13 @@ const concepts = {
     number: "03",
     name: "Warm Modern",
     note: "Approachable, calm, residential",
-    eyebrow: "Home projects made easier · English & Spanish",
-    title: "A better home starts with the right help.",
+    eyebrow: "Meet Jaime · Your local handyman since 2011",
+    title: "Hi, I’m Jaime. Tell me what your home needs.",
     intro:
-      "Work directly with Jaime for thoughtful repairs, upgrades, and remodeling—with clear communication in English or Spanish from the first conversation to the final walkthrough.",
-    primary: "Tell Jaime about your project",
-    secondary: "Explore our services",
-    proof: ["Work directly with Jaime", "English & Spanish", "Quality without shortcuts"],
+      "For 15 years I’ve helped Seattle and Eastside homeowners with repairs, upgrades, and remodels. We’ll talk it through in English or Spanish, and you’ll know the price before I pick up a tool.",
+    primary: "Get my free estimate",
+    secondary: "Call (206) 670-3045",
+    proof: ["You work with me, not a crew", "Se habla español", "Free estimates"],
     image: assetPath("/Jaime Handyman Listening.svg"),
   },
   ironclad: {
@@ -155,35 +155,35 @@ const reviewSlides = [reviews.slice(0, 2), reviews.slice(2, 4)];
 const faqs = [
   [
     "What types of projects do you handle?",
-    "We handle electrical work and lighting, appliance installations, drywall and painting, doors and windows, carpentry and finish work, flooring, and kitchen or bathroom remodeling—from minor fixes to full upgrades.",
+    "Electrical work and lighting, appliance installations, drywall and painting, doors and windows, carpentry and finish work, flooring, and kitchen or bathroom remodeling—from a minor fix to a full upgrade. If you are not sure whether your project fits, just ask me.",
   ],
   [
     "How much does handyman service cost?",
-    "Pricing depends on the work involved. We provide a clear estimate before work begins so you understand the scope and cost.",
+    "It depends on the work involved. I look at the project first and give you a clear estimate before anything begins, so there are no surprises when you get the invoice.",
   ],
   [
     "Are you licensed, bonded, and insured?",
-    "Yes. S & E Handyman is fully licensed, bonded, and insured. We take safety and professionalism seriously so you can feel confident about the work being completed in your home.",
+    "Yes. S & E Handyman is fully licensed, bonded, and insured. I take safety and professionalism seriously so you can feel confident about work being done in your home.",
   ],
   [
     "How do I request a quote or schedule a job?",
-    "Call us at (206) 670-3045 or email sehandymanllc@gmail.com and tell us what you need. We will discuss the project, provide a free estimate, and help schedule the work.",
+    "Call me at (206) 670-3045 or email sehandymanllc@gmail.com and tell me what you need. We will talk through the project, I will give you a free estimate, and we will find a time that works for you.",
   ],
   [
     "Do you offer emergency or same-day service?",
-    "We do our best to accommodate urgent repairs and prioritize emergency requests whenever possible. Availability depends on the job and current schedule; regular hours are Monday through Saturday, 7am to 7pm.",
+    "I do my best to fit in urgent repairs and prioritize emergencies whenever I can. It depends on the job and my current schedule; regular hours are Monday through Saturday, 7am to 7pm.",
   ],
   [
     "What areas do you serve?",
-    "We proudly serve homeowners throughout Seattle and the Eastside, including surrounding neighborhoods.",
+    "I serve homeowners throughout Seattle and the Eastside, including the surrounding neighborhoods. Not sure if you are in range? Give me a call and I will let you know.",
   ],
   [
     "Can I combine multiple tasks in one visit?",
-    "Absolutely. Bundling small repairs or maintenance tasks into one service call is a convenient way to save time and get more of your list completed efficiently.",
+    "Absolutely, and it is the smartest way to use my time. Bundling small repairs and maintenance into one visit gets more of your list done for less. Send me the whole list and we will work through it together.",
   ],
   [
     "Can we discuss my project in Spanish?",
-    "Yes. Jaime is bilingual and can discuss estimates, project details, and questions with you in English or Spanish—whichever feels most comfortable.",
+    "Sí, hablo español. We can go over estimates, project details, and any questions in English or Spanish—whichever feels more comfortable for you.",
   ],
 ];
 
@@ -324,7 +324,7 @@ export default function Home() {
             </a>
             <a className="utility-link email" href="mailto:sehandymanllc@gmail.com">
               <Icon name="mail" />
-              <span><small>Email us</small>sehandymanllc@gmail.com</span>
+              <span><small>Email me</small>sehandymanllc@gmail.com</span>
             </a>
             <span className="utility-socials">
               <span className="follow-label">Follow us</span>
@@ -354,7 +354,7 @@ export default function Home() {
           <Brand />
           <nav className={menu ? "open" : ""} aria-label="Main navigation">
             <a href={assetPath("/services/")} onClick={() => setMenu(false)}>Services</a>
-            <a href="#work" onClick={() => setMenu(false)}>Our work</a>
+            <a href={assetPath("/our-work/")} onClick={() => setMenu(false)}>Our work</a>
             <a href="#reviews" onClick={() => setMenu(false)}>Reviews</a>
             <a href="#about" onClick={() => setMenu(false)}>About</a>
           </nav>
@@ -399,7 +399,8 @@ export default function Home() {
               <a className="button primary" href="#estimate">
                 {concept.primary} <Icon name="arrow" />
               </a>
-              <a className="button secondary" href={assetPath("/services/")}>
+              <a className="button secondary" href="tel:2066703045">
+                <Icon name="phone" />
                 {concept.secondary}
               </a>
             </div>
@@ -429,8 +430,8 @@ export default function Home() {
               <input name="email" type="email" placeholder="Email" autoComplete="email" required />
             </label>
             <label>
-              <span className="sr-only">How can we help you?</span>
-              <textarea name="message" rows={1} placeholder="How can we help you?" required />
+              <span className="sr-only">How can I help you?</span>
+              <textarea name="message" rows={1} placeholder="How can I help you?" required />
             </label>
             <button type="submit">Submit <Icon name="arrow" /></button>
           </form>
@@ -452,7 +453,7 @@ export default function Home() {
         </section>
 
         <section className="trust-strip">
-          <p><strong>Welcome in English or Spanish</strong> Serving Seattle &amp; the Eastside since 2011</p>
+          <p><strong>Se habla español</strong> Serving Seattle &amp; the Eastside since 2011</p>
           <p className="phone-link">
             <Icon name="phone" />
             <span>Prefer to talk? <a href="tel:2066703045">(206) 670-3045</a></span>
@@ -462,12 +463,12 @@ export default function Home() {
         <section className="services section" id="services">
           <div className="section-heading">
             <div>
-              <span className="kicker">What we do</span>
-              <h2>One trusted team.<br />A home of <span className="mobile-break"><br /></span>possibilities.</h2>
+              <span className="kicker">What I can help with</span>
+              <h2>One call for almost<br />anything your <span className="mobile-break"><br /></span>home needs.</h2>
             </div>
             <p>
-              From small repairs to full-room improvements, our skilled team
-              delivers dependable work with safety, detail, and your satisfaction in mind.
+              From a single repair to a full room remodel, I bring the same care to
+              every job—clear pricing, clean work, and real respect for your home.
             </p>
           </div>
           <div className="service-grid">
@@ -498,19 +499,19 @@ export default function Home() {
             <span>Personal service from start to finish</span>
           </div>
           <div className="project-copy">
-            <span className="kicker">The S &amp; E standard</span>
+            <span className="kicker">How I work</span>
             <h2>Good work starts with listening.</h2>
             <p>
-              Your project begins with a clear conversation—what you need,
-              what matters, and what done-right looks like to you. Then we
-              show up prepared, protect your home, and keep you informed.
+              Every project begins with a real conversation—what you need, what
+              matters to you, and what done right looks like. Then I show up
+              prepared, protect your home, and keep you posted as the work moves.
             </p>
             <ul>
-              <li><Icon name="check" /><span><strong>Clear, honest estimates</strong>Know the scope and cost before work begins.</span></li>
-              <li><Icon name="check" /><span><strong>Respect for your space</strong>Careful prep and a clean finish.</span></li>
+              <li><Icon name="check" /><span><strong>Clear, honest estimates</strong>You’ll know the scope and the cost before I start.</span></li>
+              <li><Icon name="check" /><span><strong>Respect for your space</strong>Careful prep, and I clean up when I’m done.</span></li>
               <li><Icon name="check" /><span><strong>Details that hold up</strong>Quality work, even where you don’t see it.</span></li>
             </ul>
-            <a className="text-link" href="#about">Why homeowners choose us <Icon name="arrow" /></a>
+            <a className="text-link" href="#about">Why homeowners keep calling me <Icon name="arrow" /></a>
           </div>
         </section>
 
@@ -518,7 +519,7 @@ export default function Home() {
           <div className="section-heading review-heading">
             <div>
               <span className="kicker">Google reviews</span>
-              <h2>What Seattle &amp; Eastside<br />homeowners are saying about us.</h2>
+              <h2>What Seattle &amp; Eastside<br />homeowners say about my work.</h2>
             </div>
             <div className="big-rating">
               <strong>5.0</strong><span>★★★★★</span><small>Based on local Google reviews</small>
@@ -589,16 +590,16 @@ export default function Home() {
         <section className="about section" id="about">
           <div className="about-stat">
             <strong>15+</strong>
-            <span>years of dependable local service</span>
+            <span>years helping local homeowners</span>
           </div>
           <div className="about-copy">
             <span className="kicker">Local since 2011</span>
-            <h2>Quality and reliability<br />in every project.</h2>
+            <h2>I treat your home<br />like my own.</h2>
             <p>
-              Jaime works directly with Seattle and Eastside homeowners to provide
-              professional, safe, and efficient service. From a small repair to a full
-              remodel, he listens, communicates clearly in English or Spanish, and
-              completes every job with care and attention to detail. No job is too small.
+              I work directly with Seattle and Eastside homeowners—no call center, no
+              rotating crew. From a small repair to a full remodel, I listen first,
+              explain the plan in English or Spanish, and finish the job with the care
+              I’d want in my own house. And no job is too small to ask about.
             </p>
           </div>
           <div className="areas">
@@ -614,7 +615,7 @@ export default function Home() {
             <p>
               Still deciding? Call <a href="tel:2066703045">(206) 670-3045</a> or
               email <a href="mailto:sehandymanllc@gmail.com">sehandymanllc@gmail.com</a>.
-              We’re happy to talk through your project.
+              I’m always happy to talk through a project, even if you’re just weighing options.
             </p>
           </div>
           <div className="faq-list">
@@ -632,8 +633,8 @@ export default function Home() {
         <section className="estimate" id="estimate">
           <div>
             <span className="kicker">Let’s get it done</span>
-            <h2>What can we take<br />off your list?</h2>
-            <p>Tell us about your project in English or Spanish. Jaime will follow up to discuss the details and next steps.</p>
+            <h2>What can I take<br />off your list?</h2>
+            <p>Tell me about your project in English or Spanish. I’ll follow up personally to talk through the details, the timing, and what it will cost.</p>
           </div>
           <form onSubmit={submitQuote}>
             <label>
@@ -642,16 +643,16 @@ export default function Home() {
             </label>
             <label>
               <span>Phone or email</span>
-              <input name="contact" type="text" placeholder="How should we reach you?" required />
+              <input name="contact" type="text" placeholder="How should I reach you?" required />
             </label>
             <label className="wide">
               <span>What do you need help with?</span>
               <textarea name="message" placeholder="A quick description of your project..." required />
             </label>
             <button className="button primary" type="submit">
-              Request my estimate <Icon name="arrow" />
+              Request my free estimate <Icon name="arrow" />
             </button>
-            <small>Usually responds within one business day.</small>
+            <small>I usually reply within one business day.</small>
           </form>
         </section>
 
@@ -659,7 +660,7 @@ export default function Home() {
           <Brand />
           <div className="footer-links">
             <a href={assetPath("/services/")}>Services</a>
-            <a href="#work">Our work</a>
+            <a href={assetPath("/our-work/")}>Our work</a>
             <a href="#reviews">Reviews</a>
             <a href="#about">About</a>
           </div>

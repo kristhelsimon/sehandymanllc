@@ -83,16 +83,16 @@ export default function ServicesPageClient() {
 
         <section className="services-hero">
           <div className="services-hero-copy">
-            <span className="kicker">Seattle &amp; Eastside handyman services</span>
-            <h1>One reliable call for the work your home needs.</h1>
+            <span className="kicker">Seattle &amp; Eastside · Se habla español</span>
+            <h1>One call for the work your home needs.</h1>
             <p>
-              From the repair that cannot wait to the room you are ready to improve,
-              Jaime brings clear communication and careful workmanship to every project.
-              Service is available in English or Spanish.
+              From the repair that cannot wait to the room you have been meaning to
+              improve, you deal with me directly—clear answers, careful work, and an
+              honest price. We can talk it through in English or Spanish.
             </p>
             <div className="services-hero-actions">
               <a className="button primary" href="#estimate">
-                Request a free estimate <Icon name="arrow" />
+                Get my free estimate <Icon name="arrow" />
               </a>
               <a className="services-phone" href="tel:2066703045">
                 <Icon name="phone" />
@@ -119,13 +119,13 @@ export default function ServicesPageClient() {
 
         <section className="services-intro">
           <div>
-            <span className="kicker">What we can help with</span>
-            <h2>Professional help for repairs, upgrades, and everything between.</h2>
+            <span className="kicker">What I can help with</span>
+            <h2>Help for repairs, upgrades, and everything in between.</h2>
           </div>
           <p>
-            No job is too small. Combine several home tasks into one visit or talk with
-            Jaime about a larger improvement. You will receive an honest estimate,
-            straightforward communication, and work completed with attention to detail.
+            No job is too small. Bundle a few tasks into one visit, or talk to me about
+            a bigger improvement. Either way you get an honest estimate, straight answers,
+            and work finished with attention to the details.
           </p>
         </section>
 
@@ -152,24 +152,24 @@ export default function ServicesPageClient() {
 
         <section className="service-confidence">
           <div className="service-confidence-heading">
-            <span className="kicker">The S &amp; E standard</span>
+            <span className="kicker">How I work</span>
             <h2>Good work should feel straightforward.</h2>
           </div>
           <div className="service-process">
             <article>
               <span>01</span>
-              <h3>Tell Jaime what you need</h3>
-              <p>Call, email, or send the form. English and Spanish are both welcome.</p>
+              <h3>Tell me what you need</h3>
+              <p>Call, email, or send the form. English or Spanish, both welcome.</p>
             </article>
             <article>
               <span>02</span>
-              <h3>Receive a clear estimate</h3>
-              <p>Understand the work, expectations, and price before the project begins.</p>
+              <h3>I give you a clear price</h3>
+              <p>You will know the work, the timing, and the cost before I begin.</p>
             </article>
             <article>
               <span>03</span>
-              <h3>Get it done with care</h3>
-              <p>Your home is protected, the details are handled, and the work area is left clean.</p>
+              <h3>I get it done with care</h3>
+              <p>Your home stays protected, the details get handled, and I clean up after myself.</p>
             </article>
           </div>
           <div className="service-credentials">
@@ -186,19 +186,19 @@ export default function ServicesPageClient() {
             <h2>That is completely fine.</h2>
           </div>
           <p>
-            Describe what is happening or send your repair list. Jaime will help identify
-            the right next step and let you know whether S &amp; E Handyman is the right fit.
+            Describe what is going on, or just send me your list. I will help you figure out
+            the right next step—and I will tell you honestly if it is not something I should take on.
           </p>
-          <a className="button primary" href="#estimate">Tell us about it <Icon name="arrow" /></a>
+          <a className="button primary" href="#estimate">Tell me about it <Icon name="arrow" /></a>
         </section>
 
         <section className="estimate" id="estimate">
           <div>
             <span className="kicker">Free estimate</span>
-            <h2>What can Jaime<br />take off your list?</h2>
+            <h2>What can I take<br />off your list?</h2>
             <p>
-              Tell us about your project in English or Spanish. Jaime will follow up
-              to discuss the details and next steps.
+              Tell me about your project in English or Spanish. I will follow up
+              personally to talk through the details and next steps.
             </p>
           </div>
           <form onSubmit={submitQuote}>
@@ -208,7 +208,7 @@ export default function ServicesPageClient() {
             </label>
             <label>
               <span>Phone or email</span>
-              <input name="contact" type="text" placeholder="How should we reach you?" required />
+              <input name="contact" type="text" placeholder="How should I reach you?" required />
             </label>
             <label className="wide">
               <span>Which service do you need?</span>
@@ -219,13 +219,13 @@ export default function ServicesPageClient() {
               </select>
             </label>
             <label className="wide">
-              <span>Tell us about your project</span>
+              <span>Tell me about your project</span>
               <textarea name="message" placeholder="A quick description, location, and preferred timing..." required />
             </label>
             <button className="button primary" type="submit">
-              Request my estimate <Icon name="arrow" />
+              Request my free estimate <Icon name="arrow" />
             </button>
-            <small>Usually responds within one business day.</small>
+            <small>I usually reply within one business day.</small>
           </form>
         </section>
 

@@ -52,7 +52,7 @@ export function SiteHeader({ current = "" }) {
   const [menu, setMenu] = useState(false);
   const links = [
     ["services", "Services", pagePath("/services/")],
-    ["work", "Our work", pagePath("/#work")],
+    ["work", "Our work", pagePath("/our-work/")],
     ["reviews", "Reviews", pagePath("/#reviews")],
     ["about", "About", pagePath("/#about")],
   ];
@@ -72,7 +72,7 @@ export function SiteHeader({ current = "" }) {
           </a>
           <a className="utility-link email" href="mailto:sehandymanllc@gmail.com">
             <Icon name="mail" />
-            <span><small>Email us</small>sehandymanllc@gmail.com</span>
+            <span><small>Email me</small>sehandymanllc@gmail.com</span>
           </a>
           <span className="utility-socials">
             <span className="follow-label">Follow us</span>
@@ -137,7 +137,7 @@ export function SiteFooter() {
       <Brand />
       <div className="footer-links">
         <a href={pagePath("/services/")}>Services</a>
-        <a href={pagePath("/#work")}>Our work</a>
+        <a href={pagePath("/our-work/")}>Our work</a>
         <a href={pagePath("/#reviews")}>Reviews</a>
         <a href={pagePath("/#about")}>About</a>
       </div>
