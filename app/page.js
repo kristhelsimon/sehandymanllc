@@ -43,7 +43,7 @@ const concepts = {
     primary: "Tell Jaime about your project",
     secondary: "View recent work",
     proof: ["Work directly with Jaime", "English & Spanish", "Quality without shortcuts"],
-    image: assetPath("/jaime-handyman-listening.svg"),
+    image: assetPath("/Jaime-Handyman-Listening.svg"),
   },
   ironclad: {
     number: "04",
@@ -494,7 +494,7 @@ export default function Home() {
 
         <section className="project-story" id="work">
           <div className="project-image">
-            <img src={assetPath("/jaime-handyman-listening.svg")} alt="Jaime listening to a homeowner discuss her project" />
+            <img src={assetPath("/Jaime-Handyman-Listening.svg")} alt="Jaime listening to a homeowner discuss her project" />
             <span>Craftsmanship you can see</span>
           </div>
           <div className="project-copy">
