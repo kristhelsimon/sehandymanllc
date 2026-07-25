@@ -359,8 +359,6 @@ header nav a:hover { color: var(--accent); }
 .service-card a svg { width: 13px; }
 
 .project-story { background: var(--surface); display: grid; grid-template-columns: 1.15fr .85fr; min-height: 560px; }
-.project-story--text-only { grid-template-columns: 1fr; min-height: 0; }
-.project-story--text-only .project-copy { margin: 0 auto; max-width: 900px; width: 100%; }
 .project-image { min-height: 540px; overflow: hidden; position: relative; }
 .project-image img { height: 100%; object-fit: cover; object-position: 58% center; }
 .project-image span { background: var(--ink); bottom: 0; color: white; font: 500 14px var(--display); left: 0; padding: 18px 28px; position: absolute; }
