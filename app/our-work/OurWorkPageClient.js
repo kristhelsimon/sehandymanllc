@@ -8,14 +8,6 @@ import { ServiceSelect } from "../components/ServiceSelect";
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 const assetPath = (path) => `${basePath}${path}`;
 
-const projects = [
-  { category: "Finish Carpentry", image: assetPath("/services/finish-carpentry.webp") },
-  { category: "Electrical & Lighting", image: assetPath("/services/electrical-lighting.webp") },
-  { category: "Installations", image: assetPath("/services/installations.webp") },
-  { category: "Maintenance & Repairs", image: assetPath("/services/maintenance-repairs.webp") },
-  { category: "Drywall & Painting", image: assetPath("/services/drywall-painting.webp") },
-  { category: "Remodeling", image: assetPath("/services/remodeling.webp") },
-];
 
 function submitQuote(event) {
   event.preventDefault();
@@ -36,10 +28,17 @@ function submitQuote(event) {
   window.location.href = `mailto:sehandymanllc@gmail.com?subject=${encodeURIComponent(`Project estimate request from ${name || "website visitor"}`)}&body=${encodeURIComponent(body)}`;
 }
 
-export default function OurWorkPageClient() {
+export default function OurWorkPageClient({ groups = [] }) {
   const [filter, setFilter] = useState("All");
-  const filters = ["All", ...projects.map((project) => project.category)];
-  const visible = filter === "All" ? projects : projects.filter((project) => project.category === filter);
+
+  // Only categories that actually have photos get a filter button, so an empty
+  // folder never leaves the visitor staring at a blank grid.
+  const stocked = groups.filter((group) => group.images.length > 0);
+  const photos = stocked.flatMap((group) =>
+    group.images.map((image) => ({ src: image, label: group.label })),
+  );
+  const filters = ["All", ...stocked.map((group) => group.label)];
+  const visible = filter === "All" ? photos : photos.filter((photo) => photo.label === filter);
 
   return (
     <main id="top" data-theme="warm" className="work-page">
@@ -63,10 +62,14 @@ export default function OurWorkPageClient() {
         </section>
 
         <section className="work-gallery" id="projects" aria-label="Project gallery">
-          {visible.map((project) => (
-            <figure className="work-tile" key={project.category}>
-              <img src={project.image} alt={`${project.category} work by S and E Handyman`} loading="lazy" />
-              <figcaption>{project.category}</figcaption>
+          {visible.map((photo) => (
+            <figure className="work-tile" key={photo.src}>
+              <img
+                src={assetPath(photo.src)}
+                alt={`${photo.label} work by S and E Handyman`}
+                loading="lazy"
+              />
+              <figcaption>{photo.label}</figcaption>
             </figure>
           ))}
         </section>

@@ -1,14 +1,7 @@
-// Single source of truth for the estimate form's service picker, so every page
-// asks the same question with the same options and posts the same field name.
-export const serviceOptions = [
-  "Finish Carpentry",
-  "Electrical & Lighting",
-  "Installations",
-  "Maintenance & Repairs",
-  "Drywall & Painting",
-  "Remodeling",
-];
+import { serviceOptions } from "../lib/serviceCategories";
 
+// Shared estimate-form field, so every page asks the same question with the
+// same options and posts the same field name.
 export function ServiceSelect() {
   return (
     <label className="wide">
