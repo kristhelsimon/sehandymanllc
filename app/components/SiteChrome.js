@@ -114,7 +114,9 @@ export function SiteHeader({ current = "" }) {
             </a>
           ))}
         </nav>
-        <a className="header-cta" href="#estimate">Get an estimate</a>
+        <a className="header-cta" href="#estimate">
+          <span className="cta-lead">Get your&nbsp;</span><strong>FREE Quote</strong>
+        </a>
         <button
           className="menu-button"
           onClick={() => setMenu(!menu)}

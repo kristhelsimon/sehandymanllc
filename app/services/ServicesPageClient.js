@@ -1,6 +1,7 @@
 "use client";
 
 import { Icon, SiteFooter, SiteHeader } from "../components/SiteChrome";
+import { ServiceSelect } from "../components/ServiceSelect";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 const assetPath = (path) => `${basePath}${path}`;
@@ -210,14 +211,7 @@ export default function ServicesPageClient() {
               <span>Phone or email</span>
               <input name="contact" type="text" placeholder="How should I reach you?" required />
             </label>
-            <label className="wide">
-              <span>Which service do you need?</span>
-              <select name="service" defaultValue="">
-                <option value="">Select a service or choose “Not sure”</option>
-                {services.map((service) => <option key={service.slug}>{service.title}</option>)}
-                <option>Not sure yet</option>
-              </select>
-            </label>
+            <ServiceSelect />
             <label className="wide">
               <span>Tell me about your project</span>
               <textarea name="message" placeholder="A quick description, location, and preferred timing..." required />

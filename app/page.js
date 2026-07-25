@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 
+import { ServiceSelect } from "./components/ServiceSelect";
+
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 const assetPath = (path) => `${basePath}${path}`;
 
@@ -264,8 +266,73 @@ export default function Home() {
   const [reviewPage, setReviewPage] = useState(0);
   const [reviewsPaused, setReviewsPaused] = useState(false);
   const [expandedReview, setExpandedReview] = useState(null);
+  const [badgeDragging, setBadgeDragging] = useState(false);
   const reviewTouchStart = useRef(null);
+  const badgeTrack = useRef(null);
+  const badgeDrag = useRef({ held: false, hovered: false, startX: 0, startLeft: 0 });
   const concept = concepts.warm;
+
+  // Auto-advance the badge strip. It is a real scroll container so the same
+  // pixels can be dragged or swiped by hand; this just nudges scrollLeft along
+  // and wraps at the halfway point, where the duplicated group begins.
+  useEffect(() => {
+    const track = badgeTrack.current;
+    if (!track || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let frame;
+    let previous;
+    const advance = (now) => {
+      const elapsed = previous === undefined ? 0 : now - previous;
+      previous = now;
+      const drag = badgeDrag.current;
+      if (!drag.held && !drag.hovered) {
+        const half = track.scrollWidth / 2;
+        let next = track.scrollLeft + elapsed * 0.05;
+        if (half > 0 && next >= half) next -= half;
+        track.scrollLeft = next;
+      }
+      frame = window.requestAnimationFrame(advance);
+    };
+
+    frame = window.requestAnimationFrame(advance);
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
+  // Wraps into the middle of the duplicated strip. The +1/-1 keeps the result
+  // strictly inside the range so writing it back cannot re-trigger a wrap and
+  // bounce between the two ends forever.
+  function wrapBadgeScroll(value) {
+    const track = badgeTrack.current;
+    const half = track.scrollWidth / 2;
+    if (half <= 0) return value;
+    if (value >= half) return value - half + 1;
+    if (value <= 0) return value + half - 1;
+    return value;
+  }
+
+  function startBadgeDrag(event) {
+    if (event.pointerType === "touch") return; // native touch scrolling handles this
+    const track = badgeTrack.current;
+    badgeDrag.current.held = true;
+    badgeDrag.current.startX = event.clientX;
+    badgeDrag.current.startLeft = track.scrollLeft;
+    track.setPointerCapture(event.pointerId);
+    setBadgeDragging(true);
+  }
+
+  function moveBadgeDrag(event) {
+    if (!badgeDrag.current.held) return;
+    event.preventDefault();
+    const track = badgeTrack.current;
+    const travelled = event.clientX - badgeDrag.current.startX;
+    track.scrollLeft = wrapBadgeScroll(badgeDrag.current.startLeft - travelled);
+  }
+
+  function endBadgeDrag() {
+    if (!badgeDrag.current.held) return;
+    badgeDrag.current.held = false;
+    setBadgeDragging(false);
+  }
 
   useEffect(() => {
     if (reviewsPaused || expandedReview || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -294,12 +361,14 @@ export default function Home() {
     const phone = String(form.get("phone") || "").trim();
     const email = String(form.get("email") || "").trim();
     const contact = String(form.get("contact") || "").trim();
+    const service = String(form.get("service") || "").trim();
     const message = String(form.get("message") || "").trim();
     const body = [
       `Name: ${name || "Not provided"}`,
       phone ? `Phone: ${phone}` : null,
       email ? `Email: ${email}` : null,
       contact ? `Preferred contact: ${contact}` : null,
+      service ? `Service: ${service}` : null,
       "",
       "Project details:",
       message || "Not provided",
@@ -359,7 +428,9 @@ export default function Home() {
             <a href="#reviews" onClick={() => setMenu(false)}>Reviews</a>
             <a href="#about" onClick={() => setMenu(false)}>About</a>
           </nav>
-          <a className="header-cta" href="#estimate">Get your FREE Quote</a>
+          <a className="header-cta" href="#quote">
+            <span className="cta-lead">Get your&nbsp;</span><strong>FREE Quote</strong>
+          </a>
           <button
             className="menu-button"
             onClick={() => setMenu(!menu)}
@@ -384,6 +455,20 @@ export default function Home() {
             </div>
             <h1>{concept.title}</h1>
             <p>{concept.intro}</p>
+            <div className="hero-benefits" aria-label="Why homeowners choose S and E Handyman">
+              <div className="hero-benefit">
+                <img src={assetPath("/trust-icons/15-years-expertise.webp")} alt="" />
+                <span><strong>15 years</strong>of expertise</span>
+              </div>
+              <div className="hero-benefit">
+                <img src={assetPath("/trust-icons/24-hour-estimates.webp")} alt="" />
+                <span><strong>24-hour</strong>estimates</span>
+              </div>
+              <div className="hero-benefit">
+                <img src={assetPath("/trust-icons/superior-craftsmanship.webp")} alt="" />
+                <span><strong>Superior</strong>craftsmanship</span>
+              </div>
+            </div>
             <a
               className="hero-rating"
               href="https://maps.app.goo.gl/pdkY8Qmwz6BaGovr7"
@@ -396,15 +481,6 @@ export default function Home() {
               <span><b>Google rating</b><small>Trusted by local homeowners</small></span>
               <Icon name="arrow" />
             </a>
-            <div className="hero-actions">
-              <a className="button primary" href="#estimate">
-                {concept.primary} <Icon name="arrow" />
-              </a>
-              <a className="button secondary" href="tel:2066703045">
-                <Icon name="phone" />
-                {concept.secondary}
-              </a>
-            </div>
           </div>
           <div className="hero-proof">
             {concept.proof.map((item) => (
@@ -415,7 +491,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="quick-quote" aria-labelledby="quick-quote-title">
+        <section className="quick-quote" id="quote" aria-labelledby="quick-quote-title">
           <h2 id="quick-quote-title">Get your <strong>FREE Quote</strong></h2>
           <form onSubmit={submitQuote}>
             <label>
@@ -439,7 +515,32 @@ export default function Home() {
         </section>
 
         <section className="trust-marquee" aria-label="S and E Handyman credentials and service promises">
-          <div className="marquee-track">
+          <div
+            className={`marquee-track${badgeDragging ? " dragging" : ""}`}
+            ref={badgeTrack}
+            tabIndex={0}
+            role="group"
+            aria-label="Credentials — scroll or drag to see more"
+            onPointerDown={startBadgeDrag}
+            onPointerMove={moveBadgeDrag}
+            onPointerUp={endBadgeDrag}
+            onPointerCancel={endBadgeDrag}
+            onMouseEnter={() => { badgeDrag.current.hovered = true; }}
+            onMouseLeave={() => { badgeDrag.current.hovered = false; }}
+            onTouchStart={() => { badgeDrag.current.hovered = true; }}
+            onTouchEnd={() => { badgeDrag.current.hovered = false; }}
+            onDragStart={(event) => event.preventDefault()}
+            onScroll={(event) => {
+              if (badgeDrag.current.held) return;
+              const track = event.currentTarget;
+              const half = track.scrollWidth / 2;
+              if (half <= 0) return;
+              // Keeps wheel, keyboard, and touch-fling scrolling endless in both
+              // directions, since a scroll container clamps hard at 0.
+              if (track.scrollLeft >= half) track.scrollLeft = track.scrollLeft - half + 1;
+              else if (track.scrollLeft <= 0) track.scrollLeft = half - 1;
+            }}
+          >
             {[0, 1].map((group) => (
               <div className="marquee-group" aria-hidden={group === 1} key={group}>
                 <div className="trust-image-badge"><img src={assetPath("/badges/serving-since-2011.png")} alt="Serving since 2011" /></div>
@@ -496,20 +597,26 @@ export default function Home() {
 
         <section className="project-story" id="work">
           <div className="project-image">
-            <img src={assetPath("/Jaime Handyman Listening.svg")} alt="Jaime listening to a homeowner discuss her project" />
-            <span>Personal service from start to finish</span>
+            <img
+              src={assetPath("/services/prepped-job-site.webp")}
+              alt="A living room prepped before work begins—furniture wrapped in plastic, drop cloths over the floor, and painter's tape along the trim"
+              width="1536"
+              height="1024"
+            />
+            <span>Your home gets covered before the work starts</span>
           </div>
           <div className="project-copy">
             <span className="kicker">How I work</span>
-            <h2>Good work starts with listening.</h2>
+            <h2>Good work starts before the work does.</h2>
             <p>
-              Every project begins with a real conversation—what you need, what
-              matters to you, and what done right looks like. Then I show up
-              prepared, protect your home, and keep you posted as the work moves.
+              It begins with a real conversation about what you need—then with drop
+              cloths down, furniture covered, and edges taped before a single tool
+              comes out. You’ll know the price up front, and you’ll get your room
+              back the way you’d want it.
             </p>
             <ul>
+              <li><Icon name="check" /><span><strong>Respect for your space</strong>Your floors and furniture are protected before I begin.</span></li>
               <li><Icon name="check" /><span><strong>Clear, honest estimates</strong>You’ll know the scope and the cost before I start.</span></li>
-              <li><Icon name="check" /><span><strong>Respect for your space</strong>Careful prep, and I clean up when I’m done.</span></li>
               <li><Icon name="check" /><span><strong>Details that hold up</strong>Quality work, even where you don’t see it.</span></li>
             </ul>
             <a className="text-link" href="#about">Why homeowners keep calling me <Icon name="arrow" /></a>
@@ -646,6 +753,7 @@ export default function Home() {
               <span>Phone or email</span>
               <input name="contact" type="text" placeholder="How should I reach you?" required />
             </label>
+            <ServiceSelect />
             <label className="wide">
               <span>What do you need help with?</span>
               <textarea name="message" placeholder="A quick description of your project..." required />

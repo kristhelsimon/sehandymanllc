@@ -1,60 +1,20 @@
 "use client";
 
+import { useState } from "react";
+
 import { Icon, SiteFooter, SiteHeader } from "../components/SiteChrome";
+import { ServiceSelect } from "../components/ServiceSelect";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 const assetPath = (path) => `${basePath}${path}`;
-const pagePath = (path) => `${basePath}${path}`;
 
 const projects = [
-  {
-    number: "01",
-    title: "Finish details that feel built in",
-    category: "Finish Carpentry",
-    description: "Trim, shelving, doors, and detailed woodwork completed for a clean, intentional finish.",
-    image: assetPath("/services/finish-carpentry.webp"),
-    className: "wide",
-  },
-  {
-    number: "02",
-    title: "Lighting that improves the room",
-    category: "Electrical & Lighting",
-    description: "Thoughtful fixture and lighting work handled with careful preparation and attention to safety.",
-    image: assetPath("/services/electrical-lighting.webp"),
-    className: "standard",
-  },
-  {
-    number: "03",
-    title: "Installations done securely",
-    category: "Installations",
-    description: "Fixtures, hardware, appliances, and household items installed correctly and ready to use.",
-    image: assetPath("/services/installations.webp"),
-    className: "standard",
-  },
-  {
-    number: "04",
-    title: "Repairs that restore the space",
-    category: "Maintenance & Repairs",
-    description: "Practical home repairs completed efficiently, respectfully, and with a lasting result in mind.",
-    image: assetPath("/services/maintenance-repairs.webp"),
-    className: "wide",
-  },
-  {
-    number: "05",
-    title: "Walls finished cleanly",
-    category: "Drywall & Painting",
-    description: "Patches, texture work, touch-ups, and painting blended carefully into the surrounding room.",
-    image: assetPath("/services/drywall-painting.webp"),
-    className: "wide",
-  },
-  {
-    number: "06",
-    title: "Improvements built around the home",
-    category: "Remodeling",
-    description: "Larger upgrades coordinated with clear communication from preparation through the final details.",
-    image: assetPath("/services/remodeling.webp"),
-    className: "standard",
-  },
+  { category: "Finish Carpentry", image: assetPath("/services/finish-carpentry.webp") },
+  { category: "Electrical & Lighting", image: assetPath("/services/electrical-lighting.webp") },
+  { category: "Installations", image: assetPath("/services/installations.webp") },
+  { category: "Maintenance & Repairs", image: assetPath("/services/maintenance-repairs.webp") },
+  { category: "Drywall & Painting", image: assetPath("/services/drywall-painting.webp") },
+  { category: "Remodeling", image: assetPath("/services/remodeling.webp") },
 ];
 
 function submitQuote(event) {
@@ -62,12 +22,12 @@ function submitQuote(event) {
   const form = new FormData(event.currentTarget);
   const name = String(form.get("name") || "").trim();
   const contact = String(form.get("contact") || "").trim();
-  const projectType = String(form.get("projectType") || "").trim();
+  const service = String(form.get("service") || "").trim();
   const message = String(form.get("message") || "").trim();
   const body = [
     `Name: ${name || "Not provided"}`,
     `Phone or email: ${contact || "Not provided"}`,
-    `Project type: ${projectType || "Not sure yet"}`,
+    `Service: ${service || "Not sure yet"}`,
     "",
     "Project details:",
     message || "Not provided",
@@ -77,38 +37,38 @@ function submitQuote(event) {
 }
 
 export default function OurWorkPageClient() {
+  const [filter, setFilter] = useState("All");
+  const filters = ["All", ...projects.map((project) => project.category)];
+  const visible = filter === "All" ? projects : projects.filter((project) => project.category === filter);
+
   return (
     <main id="top" data-theme="warm" className="work-page">
       <div className="site-shell">
         <SiteHeader current="work" />
 
-        <section className="work-hero">
-          <div className="work-hero-copy">
-            <span className="kicker">My work</span>
-            <h1>Careful work.<br />Visible results.</h1>
-            <p>
-              A look at the repairs, installations, finish work, and home improvements
-              I handle for homeowners across Seattle and the Eastside—most of them for
-              neighbors who called me back a second and third time.
-            </p>
-            <div className="work-hero-actions">
-              <a className="button primary" href="#projects">
-                Explore the work <Icon name="arrow" />
-              </a>
-              <a className="work-text-link" href="#estimate">Start a similar project</a>
-            </div>
-          </div>
-          <div className="work-hero-collage" aria-label="Examples of S and E Handyman work">
-            <figure className="work-collage-main">
-              <img src={assetPath("/services/finish-carpentry.webp")} alt="Detailed finish carpentry work" />
+        <section className="work-head">
+          <h1>Our past work</h1>
+          <nav className="work-filters" aria-label="Filter work by service">
+            {filters.map((name) => (
+              <button
+                className={filter === name ? "active" : ""}
+                onClick={() => setFilter(name)}
+                aria-pressed={filter === name}
+                key={name}
+              >
+                {name === "All" ? "All work" : name}
+              </button>
+            ))}
+          </nav>
+        </section>
+
+        <section className="work-gallery" id="projects" aria-label="Project gallery">
+          {visible.map((project) => (
+            <figure className="work-tile" key={project.category}>
+              <img src={project.image} alt={`${project.category} work by S and E Handyman`} loading="lazy" />
+              <figcaption>{project.category}</figcaption>
             </figure>
-            <figure>
-              <img src={assetPath("/services/electrical-lighting.webp")} alt="Residential electrical and lighting work" />
-            </figure>
-            <figure>
-              <img src={assetPath("/services/remodeling.webp")} alt="Residential home improvement work" />
-            </figure>
-          </div>
+          ))}
         </section>
 
         <section className="work-proof-strip" aria-label="S and E Handyman work standards">
@@ -116,38 +76,6 @@ export default function OurWorkPageClient() {
           <div><strong>Six specialties</strong><span>One dependable point of contact</span></div>
           <div><strong>English &amp; Spanish</strong><span>Clear, comfortable communication</span></div>
           <div><strong>Licensed · Bonded · Insured</strong><span>Professional peace of mind</span></div>
-        </section>
-
-        <section className="work-intro">
-          <div>
-            <span className="kicker">Project gallery</span>
-            <h2>Details matter—whether the job is large or small.</h2>
-          </div>
-          <div>
-            <p>
-              Every project starts with me understanding what you actually need. Then I
-              prepare the space, do the work carefully, and keep you in the loop right
-              through the final walkthrough.
-            </p>
-            <a href={pagePath("/services/")}>Explore all services <Icon name="arrow" /></a>
-          </div>
-        </section>
-
-        <section className="work-gallery" id="projects" aria-label="Project gallery">
-          {projects.map((project) => (
-            <article className={`work-project ${project.className}`} key={project.number}>
-              <div className="work-project-image">
-                <img src={project.image} alt={`${project.category} project example`} />
-                <span>{project.number}</span>
-              </div>
-              <div className="work-project-copy">
-                <span>{project.category}</span>
-                <h2>{project.title}</h2>
-                <p>{project.description}</p>
-                <a href="#estimate">Discuss a project like this <Icon name="arrow" /></a>
-              </div>
-            </article>
-          ))}
         </section>
 
         <section className="work-standard">
@@ -214,14 +142,7 @@ export default function OurWorkPageClient() {
               <span>Phone or email</span>
               <input name="contact" type="text" placeholder="How should I reach you?" required />
             </label>
-            <label className="wide">
-              <span>What kind of project is it?</span>
-              <select name="projectType" defaultValue="">
-                <option value="">Select a project type or choose “Not sure”</option>
-                {projects.map((project) => <option key={project.number}>{project.category}</option>)}
-                <option>Not sure yet</option>
-              </select>
-            </label>
+            <ServiceSelect />
             <label className="wide">
               <span>Tell me what you would like to accomplish</span>
               <textarea name="message" placeholder="A quick description, location, and preferred timing..." required />
