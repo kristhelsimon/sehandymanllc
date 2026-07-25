@@ -37,11 +37,11 @@ const concepts = {
     name: "Warm Modern",
     note: "Approachable, calm, residential",
     eyebrow: "Home projects made easier · English & Spanish",
-    title: "A better home starts with someone who listens.",
+    title: "A better home starts with the right help.",
     intro:
       "Work directly with Jaime for thoughtful repairs, upgrades, and remodeling—with clear communication in English or Spanish from the first conversation to the final walkthrough.",
     primary: "Tell Jaime about your project",
-    secondary: "View recent work",
+    secondary: "Explore our services",
     proof: ["Work directly with Jaime", "English & Spanish", "Quality without shortcuts"],
     image: assetPath("/Jaime Handyman Listening.svg"),
   },
@@ -353,12 +353,12 @@ export default function Home() {
         <header>
           <Brand />
           <nav className={menu ? "open" : ""} aria-label="Main navigation">
-            <a href="#services" onClick={() => setMenu(false)}>Services</a>
+            <a href={assetPath("/services/")} onClick={() => setMenu(false)}>Services</a>
             <a href="#work" onClick={() => setMenu(false)}>Our work</a>
             <a href="#reviews" onClick={() => setMenu(false)}>Reviews</a>
             <a href="#about" onClick={() => setMenu(false)}>About</a>
           </nav>
-          <a className="header-cta" href="#estimate">Get an estimate</a>
+          <a className="header-cta" href="#estimate">Get your FREE Quote</a>
           <button
             className="menu-button"
             onClick={() => setMenu(!menu)}
@@ -399,7 +399,7 @@ export default function Home() {
               <a className="button primary" href="#estimate">
                 {concept.primary} <Icon name="arrow" />
               </a>
-              <a className="button secondary" href="#services">
+              <a className="button secondary" href={assetPath("/services/")}>
                 {concept.secondary}
               </a>
             </div>
@@ -430,7 +430,7 @@ export default function Home() {
             </label>
             <label>
               <span className="sr-only">How can we help you?</span>
-              <input name="message" type="text" placeholder="How can we help you?" required />
+              <textarea name="message" rows={1} placeholder="How can we help you?" required />
             </label>
             <button type="submit">Submit <Icon name="arrow" /></button>
           </form>
@@ -658,7 +658,7 @@ export default function Home() {
         <footer className="site-footer">
           <Brand />
           <div className="footer-links">
-            <a href="#services">Services</a>
+            <a href={assetPath("/services/")}>Services</a>
             <a href="#work">Our work</a>
             <a href="#reviews">Reviews</a>
             <a href="#about">About</a>
