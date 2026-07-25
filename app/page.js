@@ -43,7 +43,7 @@ const concepts = {
     primary: "Tell Jaime about your project",
     secondary: "View recent work",
     proof: ["Work directly with Jaime", "English & Spanish", "Quality without shortcuts"],
-    image: assetPath("/Jaime-Handyman-Listening.svg"),
+    image: null,
   },
   ironclad: {
     number: "04",
@@ -374,7 +374,7 @@ export default function Home() {
         </header>
 
         <section className="hero">
-          <img src={concept.image} alt="Jaime of S and E Handyman speaking with a homeowner" />
+          {concept.image && <img src={concept.image} alt="" />}
           <div className="hero-shade" />
           <div className="hero-copy">
             <div className="eyebrow">
@@ -492,11 +492,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="project-story" id="work">
-          <div className="project-image">
-            <img src={assetPath("/Jaime-Handyman-Listening.svg")} alt="Jaime listening to a homeowner discuss her project" />
-            <span>Craftsmanship you can see</span>
-          </div>
+        <section className="project-story project-story--text-only" id="work">
           <div className="project-copy">
             <span className="kicker">The S &amp; E standard</span>
             <h2>Good work starts with listening.</h2>
