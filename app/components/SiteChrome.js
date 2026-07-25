@@ -51,6 +51,7 @@ export function Brand() {
 export function SiteHeader({ current = "" }) {
   const [menu, setMenu] = useState(false);
   const links = [
+    ["home", "Home", pagePath("/")],
     ["services", "Services", pagePath("/services/")],
     ["work", "Our work", pagePath("/our-work/")],
     ["reviews", "Reviews", pagePath("/#reviews")],
@@ -136,6 +137,7 @@ export function SiteFooter() {
     <footer className="site-footer">
       <Brand />
       <div className="footer-links">
+        <a href={pagePath("/")}>Home</a>
         <a href={pagePath("/services/")}>Services</a>
         <a href={pagePath("/our-work/")}>Our work</a>
         <a href={pagePath("/#reviews")}>Reviews</a>

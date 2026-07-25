@@ -353,6 +353,7 @@ export default function Home() {
         <header>
           <Brand />
           <nav className={menu ? "open" : ""} aria-label="Main navigation">
+            <a className="active" href={assetPath("/")} aria-current="page" onClick={() => setMenu(false)}>Home</a>
             <a href={assetPath("/services/")} onClick={() => setMenu(false)}>Services</a>
             <a href={assetPath("/our-work/")} onClick={() => setMenu(false)}>Our work</a>
             <a href="#reviews" onClick={() => setMenu(false)}>Reviews</a>
@@ -659,6 +660,7 @@ export default function Home() {
         <footer className="site-footer">
           <Brand />
           <div className="footer-links">
+            <a href={assetPath("/")}>Home</a>
             <a href={assetPath("/services/")}>Services</a>
             <a href={assetPath("/our-work/")}>Our work</a>
             <a href="#reviews">Reviews</a>
