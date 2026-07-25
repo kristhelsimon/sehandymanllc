@@ -55,7 +55,7 @@ export function SiteHeader({ current = "" }) {
     ["services", "Services", pagePath("/services/")],
     ["work", "Our work", pagePath("/our-work/")],
     ["reviews", "Reviews", pagePath("/#reviews")],
-    ["about", "About", pagePath("/#about")],
+    ["about", "About Me", pagePath("/#about")],
   ];
 
   return (
@@ -143,7 +143,7 @@ export function SiteFooter() {
         <a href={pagePath("/services/")}>Services</a>
         <a href={pagePath("/our-work/")}>Our work</a>
         <a href={pagePath("/#reviews")}>Reviews</a>
-        <a href={pagePath("/#about")}>About</a>
+        <a href={pagePath("/#about")}>About Me</a>
       </div>
       <div className="footer-contact">
         <small>Mobile</small>

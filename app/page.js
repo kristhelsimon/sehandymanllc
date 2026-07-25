@@ -79,6 +79,7 @@ const services = [
   {
     icon: "ruler",
     title: "Finish Carpentry",
+    slug: "finish-carpentry",
     text: "Trim, doors, shelving, built-ins, and detailed woodwork made to fit your home.",
     tag: "Trim → built-ins",
     image: assetPath("/services/finish-carpentry.webp"),
@@ -86,6 +87,7 @@ const services = [
   {
     icon: "bolt",
     title: "Electrical & Lighting",
+    slug: "electrical-lighting",
     text: "Lighting, fixtures, outlets, switches, troubleshooting, and careful electrical upgrades.",
     tag: "Fixtures → upgrades",
     image: assetPath("/services/electrical-lighting.webp"),
@@ -93,6 +95,7 @@ const services = [
   {
     icon: "install",
     title: "Installations",
+    slug: "installations",
     text: "Appliances, fixtures, hardware, shelving, and other household items installed correctly.",
     tag: "Appliances → hardware",
     image: assetPath("/services/installations.webp"),
@@ -100,6 +103,7 @@ const services = [
   {
     icon: "tool",
     title: "Maintenance & Repairs",
+    slug: "maintenance-repairs",
     text: "Everyday fixes, home maintenance, punch lists, and urgent repairs handled efficiently.",
     tag: "Quick fixes → upkeep",
     image: assetPath("/services/maintenance-repairs.webp"),
@@ -107,6 +111,7 @@ const services = [
   {
     icon: "wall",
     title: "Drywall & Painting",
+    slug: "drywall-painting",
     text: "Drywall patches, texture matching, interior painting, and seamless wall repairs.",
     tag: "Patch → refresh",
     image: assetPath("/services/drywall-painting.webp"),
@@ -115,6 +120,7 @@ const services = [
   {
     icon: "home",
     title: "Remodeling",
+    slug: "remodeling",
     text: "Kitchen, bathroom, and full-room improvements managed with care from start to finish.",
     tag: "Kitchen → bathroom",
     image: assetPath("/services/remodeling.webp"),
@@ -269,7 +275,7 @@ export default function Home() {
   const [badgeDragging, setBadgeDragging] = useState(false);
   const reviewTouchStart = useRef(null);
   const badgeTrack = useRef(null);
-  const badgeDrag = useRef({ held: false, hovered: false, startX: 0, startLeft: 0 });
+  const badgeDrag = useRef({ held: false, paused: false, offset: 0, startX: 0, startLeft: 0 });
   const concept = concepts.warm;
 
   // Auto-advance the badge strip. It is a real scroll container so the same
@@ -279,17 +285,21 @@ export default function Home() {
     const track = badgeTrack.current;
     if (!track || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+    const drag = badgeDrag.current;
+    drag.offset = track.scrollLeft;
     let frame;
     let previous;
     const advance = (now) => {
-      const elapsed = previous === undefined ? 0 : now - previous;
+      const elapsed = previous === undefined ? 0 : Math.min(now - previous, 100);
       previous = now;
-      const drag = badgeDrag.current;
-      if (!drag.held && !drag.hovered) {
+      if (!drag.held && !drag.paused) {
         const half = track.scrollWidth / 2;
-        let next = track.scrollLeft + elapsed * 0.05;
-        if (half > 0 && next >= half) next -= half;
-        track.scrollLeft = next;
+        // Advance an offset we own rather than reading scrollLeft back each
+        // frame: mobile browsers round scrollLeft to whole pixels, which throws
+        // away the sub-pixel step and stalls the strip completely.
+        drag.offset += elapsed * 0.05;
+        if (half > 0 && drag.offset >= half) drag.offset -= half;
+        track.scrollLeft = drag.offset;
       }
       frame = window.requestAnimationFrame(advance);
     };
@@ -331,6 +341,7 @@ export default function Home() {
   function endBadgeDrag() {
     if (!badgeDrag.current.held) return;
     badgeDrag.current.held = false;
+    badgeDrag.current.offset = badgeTrack.current.scrollLeft;
     setBadgeDragging(false);
   }
 
@@ -426,7 +437,7 @@ export default function Home() {
             <a href={assetPath("/services/")} onClick={() => setMenu(false)}>Services</a>
             <a href={assetPath("/our-work/")} onClick={() => setMenu(false)}>Our work</a>
             <a href="#reviews" onClick={() => setMenu(false)}>Reviews</a>
-            <a href="#about" onClick={() => setMenu(false)}>About</a>
+            <a href="#about" onClick={() => setMenu(false)}>About Me</a>
           </nav>
           <a className="header-cta" href="#quote">
             <span className="cta-lead">Get your&nbsp;</span><strong>FREE Quote</strong>
@@ -525,13 +536,12 @@ export default function Home() {
             onPointerMove={moveBadgeDrag}
             onPointerUp={endBadgeDrag}
             onPointerCancel={endBadgeDrag}
-            onMouseEnter={() => { badgeDrag.current.hovered = true; }}
-            onMouseLeave={() => { badgeDrag.current.hovered = false; }}
-            onTouchStart={() => { badgeDrag.current.hovered = true; }}
-            onTouchEnd={() => { badgeDrag.current.hovered = false; }}
+            onPointerEnter={() => { badgeDrag.current.paused = true; }}
+            onPointerLeave={() => { badgeDrag.current.paused = false; }}
             onDragStart={(event) => event.preventDefault()}
             onScroll={(event) => {
-              if (badgeDrag.current.held) return;
+              const drag = badgeDrag.current;
+              if (drag.held) return;
               const track = event.currentTarget;
               const half = track.scrollWidth / 2;
               if (half <= 0) return;
@@ -539,6 +549,8 @@ export default function Home() {
               // directions, since a scroll container clamps hard at 0.
               if (track.scrollLeft >= half) track.scrollLeft = track.scrollLeft - half + 1;
               else if (track.scrollLeft <= 0) track.scrollLeft = half - 1;
+              // Hand control back to the animation from wherever the user left it.
+              if (Math.abs(track.scrollLeft - drag.offset) > 2) drag.offset = track.scrollLeft;
             }}
           >
             {[0, 1].map((group) => (
@@ -589,7 +601,9 @@ export default function Home() {
                 </div>
                 <h3>{service.title}</h3>
                 <p>{service.text}</p>
-                <a href="#estimate">{service.tag} <Icon name="arrow" /></a>
+                <a href={assetPath(`/services/#${service.slug}`)}>
+                  {service.tag} <Icon name="arrow" />
+                </a>
               </article>
             ))}
           </div>
@@ -701,7 +715,7 @@ export default function Home() {
             <span>years helping local homeowners</span>
           </div>
           <div className="about-copy">
-            <span className="kicker">Local since 2011</span>
+            <span className="kicker">Who you’ll be working with</span>
             <h2>I treat your home<br />like my own.</h2>
             <p>
               I work directly with Seattle and Eastside homeowners—no call center, no
@@ -772,7 +786,7 @@ export default function Home() {
             <a href={assetPath("/services/")}>Services</a>
             <a href={assetPath("/our-work/")}>Our work</a>
             <a href="#reviews">Reviews</a>
-            <a href="#about">About</a>
+            <a href="#about">About Me</a>
           </div>
           <div className="footer-contact">
             <small>Mobile</small>
