@@ -468,6 +468,21 @@ main[data-theme="warm"] .hero { background: #26352f; }
 main[data-theme="warm"] .hero > img { margin-left: auto; position: absolute; right: 0; width: 72%; }
 main[data-theme="warm"] .hero-shade { background: linear-gradient(90deg, #26352f 0%, rgba(38,53,47,.98) 28%, rgba(38,53,47,.82) 47%, rgba(38,53,47,.08) 76%); }
 main[data-theme="warm"] .hero h1 { font-style: italic; }
+@media (min-width: 901px) {
+  main[data-theme="warm"] .hero-copy {
+    bottom: 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 700px;
+    top: 30px;
+    transform: none;
+    z-index: 2;
+  }
+  main[data-theme="warm"] .hero h1 { font-size: clamp(52px, 5vw, 78px); margin: 18px 0; }
+  main[data-theme="warm"] .hero p { font-size: 15px; margin-bottom: 20px; }
+  main[data-theme="warm"] .hero-rating { margin: 0 0 18px; }
+}
 main[data-theme="warm"] .service-card { border-radius: 18px; margin: 6px; }
 main[data-theme="warm"] .project-image { margin: 28px; border-radius: 18px; }
 
@@ -557,6 +572,7 @@ main[data-theme="field"] .about-stat strong { font-family: var(--display); }
   main[data-theme="field"] .hero-proof { left: 0; right: 0; }
   main[data-theme="warm"] .hero > img { width: 100%; }
   main[data-theme="warm"] .hero-shade { background: linear-gradient(90deg, rgba(38,53,47,.94), rgba(38,53,47,.48)); }
+  main[data-theme="warm"] .hero h1 { font-size: clamp(46px, 8vw, 60px); }
 }
 
 @media (max-width: 600px) {
@@ -597,13 +613,13 @@ main[data-theme="field"] .about-stat strong { font-family: var(--display); }
     width: min(300px, calc(100vw - 64px));
   }
   .hero h1, main[data-theme="craft"] .hero h1 { font-size: 40px; overflow-wrap: break-word; }
+  main[data-theme="warm"] .hero h1 { font-size: 40px; }
   .hero p { font-size: 13px; line-height: 1.6; }
   .hero-rating { margin-bottom: 18px; padding: 10px 12px; }
   .hero-rating small { display: none; }
   .hero-stars { font-size: 10px; }
   .hero-rating > strong { font-size: 21px; }
   .hero-actions .button { width: 100%; }
-  .hero-actions .secondary { display: none; }
   .hero-proof { gap: 4px; padding: 12px 7%; }
   .quick-quote { margin: 16px auto; padding: 22px; width: calc(100% - 24px); }
   .quick-quote form { grid-template-columns: 1fr; }
