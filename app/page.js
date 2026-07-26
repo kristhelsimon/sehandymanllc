@@ -283,7 +283,7 @@ export default function Home() {
   // and wraps at the halfway point, where the duplicated group begins.
   useEffect(() => {
     const track = badgeTrack.current;
-    if (!track || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!track) return;
 
     const drag = badgeDrag.current;
     drag.offset = track.scrollLeft;
@@ -302,7 +302,11 @@ export default function Home() {
         // frame: mobile browsers round scrollLeft to whole pixels, which throws
         // away the sub-pixel step and stalls the strip completely.
         drag.offset += elapsed * 0.05;
-        if (half > 0 && drag.offset >= half) drag.offset -= half;
+        // Wrap to 1 rather than 0. WebKit floors scrollLeft to whole pixels, and
+        // a floored 0 reads as "scrolled to the start", which the scroll handler
+        // would then bounce to the far end — the strip ends up thrashing between
+        // two identical-looking positions and appears frozen.
+        if (half > 0 && drag.offset >= half) drag.offset = drag.offset - half + 1;
         track.scrollLeft = drag.offset;
       }
       frame = window.requestAnimationFrame(advance);
@@ -565,12 +569,16 @@ export default function Home() {
               const track = event.currentTarget;
               const half = track.scrollWidth / 2;
               if (half <= 0) return;
-              // Keeps wheel, keyboard, and touch-fling scrolling endless in both
-              // directions, since a scroll container clamps hard at 0.
+              // Every frame the animation writes scrollLeft, which lands here as
+              // a scroll event. Those must be ignored: reacting to our own write
+              // is what let the wrap logic fight the animation to a standstill.
+              if (Math.abs(track.scrollLeft - drag.offset) <= 2) return;
+              // Past this point the visitor moved it, so keep wheel, keyboard and
+              // fling scrolling endless — a scroll container clamps hard at 0 —
+              // and hand the animation back its position.
               if (track.scrollLeft >= half) track.scrollLeft = track.scrollLeft - half + 1;
               else if (track.scrollLeft <= 0) track.scrollLeft = half - 1;
-              // Hand control back to the animation from wherever the user left it.
-              if (Math.abs(track.scrollLeft - drag.offset) > 2) drag.offset = track.scrollLeft;
+              drag.offset = track.scrollLeft;
             }}
           >
             {[0, 1].map((group) => (
