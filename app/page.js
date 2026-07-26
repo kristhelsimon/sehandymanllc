@@ -275,7 +275,7 @@ export default function Home() {
   const [badgeDragging, setBadgeDragging] = useState(false);
   const reviewTouchStart = useRef(null);
   const badgeTrack = useRef(null);
-  const badgeDrag = useRef({ held: false, paused: false, offset: 0, startX: 0, startLeft: 0 });
+  const badgeDrag = useRef({ held: false, hovering: false, resumeAt: 0, offset: 0, startX: 0, startLeft: 0 });
   const concept = concepts.warm;
 
   // Auto-advance the badge strip. It is a real scroll container so the same
@@ -292,7 +292,11 @@ export default function Home() {
     const advance = (now) => {
       const elapsed = previous === undefined ? 0 : Math.min(now - previous, 100);
       previous = now;
-      if (!drag.held && !drag.paused) {
+      // resumeAt is a deadline rather than a paused flag on purpose. Touch
+      // gestures can end in pointercancel with no matching leave event, and a
+      // flag set on the way in would then never be cleared — the strip would
+      // die the first time someone scrolled the page with a finger over it.
+      if (!drag.held && !drag.hovering && now >= drag.resumeAt) {
         const half = track.scrollWidth / 2;
         // Advance an offset we own rather than reading scrollLeft back each
         // frame: mobile browsers round scrollLeft to whole pixels, which throws
@@ -339,10 +343,18 @@ export default function Home() {
   }
 
   function endBadgeDrag() {
-    if (!badgeDrag.current.held) return;
-    badgeDrag.current.held = false;
-    badgeDrag.current.offset = badgeTrack.current.scrollLeft;
+    const drag = badgeDrag.current;
+    drag.hovering = false;
+    if (!drag.held) return;
+    drag.held = false;
+    drag.offset = badgeTrack.current.scrollLeft;
     setBadgeDragging(false);
+  }
+
+  // Hold off the animation for a moment after any hands-on interaction, then
+  // let it pick up on its own.
+  function deferBadgeScroll(milliseconds) {
+    badgeDrag.current.resumeAt = window.performance.now() + milliseconds;
   }
 
   useEffect(() => {
@@ -536,8 +548,16 @@ export default function Home() {
             onPointerMove={moveBadgeDrag}
             onPointerUp={endBadgeDrag}
             onPointerCancel={endBadgeDrag}
-            onPointerEnter={() => { badgeDrag.current.paused = true; }}
-            onPointerLeave={() => { badgeDrag.current.paused = false; }}
+            onPointerEnter={(event) => {
+              // Hover-pause is for real cursors only. Touch fires enter on tap
+              // but not always a matching leave, so it must never latch here.
+              if (event.pointerType === "mouse") badgeDrag.current.hovering = true;
+            }}
+            onPointerLeave={() => { badgeDrag.current.hovering = false; }}
+            onTouchStart={() => deferBadgeScroll(2500)}
+            onTouchMove={() => deferBadgeScroll(2500)}
+            onTouchEnd={() => deferBadgeScroll(1200)}
+            onTouchCancel={() => deferBadgeScroll(1200)}
             onDragStart={(event) => event.preventDefault()}
             onScroll={(event) => {
               const drag = badgeDrag.current;
