@@ -28,7 +28,7 @@ function submitQuote(event) {
   window.location.href = `mailto:sehandymanllc@gmail.com?subject=${encodeURIComponent(`Project estimate request from ${name || "website visitor"}`)}&body=${encodeURIComponent(body)}`;
 }
 
-export default function OurWorkPageClient({ groups = [] }) {
+export default function PastWorkPageClient({ groups = [] }) {
   const [filter, setFilter] = useState("All");
 
   // Only categories that actually have photos get a filter button, so an empty
@@ -46,7 +46,7 @@ export default function OurWorkPageClient({ groups = [] }) {
         <SiteHeader current="work" />
 
         <section className="work-head">
-          <h1>Our past work</h1>
+          <h1>Past work</h1>
           <nav className="work-filters" aria-label="Filter work by service">
             {filters.map((name) => (
               <button

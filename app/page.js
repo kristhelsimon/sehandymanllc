@@ -451,7 +451,7 @@ export default function Home() {
           <nav className={menu ? "open" : ""} aria-label="Main navigation">
             <a className="active" href={assetPath("/")} aria-current="page" onClick={() => setMenu(false)}>Home</a>
             <a href={assetPath("/services/")} onClick={() => setMenu(false)}>Services</a>
-            <a href={assetPath("/our-work/")} onClick={() => setMenu(false)}>Past Work</a>
+            <a href={assetPath("/past-work/")} onClick={() => setMenu(false)}>Past Work</a>
             <a href="#reviews" onClick={() => setMenu(false)}>Reviews</a>
             <a href="#about" onClick={() => setMenu(false)}>About Me</a>
           </nav>
@@ -812,7 +812,7 @@ export default function Home() {
           <div className="footer-links">
             <a href={assetPath("/")}>Home</a>
             <a href={assetPath("/services/")}>Services</a>
-            <a href={assetPath("/our-work/")}>Past Work</a>
+            <a href={assetPath("/past-work/")}>Past Work</a>
             <a href="#reviews">Reviews</a>
             <a href="#about">About Me</a>
           </div>

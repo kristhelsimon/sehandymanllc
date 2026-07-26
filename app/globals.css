@@ -936,7 +936,7 @@ main[data-theme="field"] .about-stat strong { font-family: var(--display); }
   .service-unsure .button { width: 100%; }
 }
 
-/* Standalone Our Work page */
+/* Standalone Past Work page */
 .work-page .site-shell { background: var(--paper); }
 .work-hero {
   background: var(--ink);
@@ -1168,3 +1168,6 @@ main[data-theme="field"] .about-stat strong { font-family: var(--display); }
   .estimate label span { font-size: 10px; }
   .work-standard-list p, .work-proof-strip span { font-size: 13px; }
 }
+
+.redirect-notice { align-items: center; display: flex; flex-direction: column; gap: 18px; padding: 120px 8%; text-align: center; }
+.redirect-notice p { color: var(--muted); font-size: 13px; margin: 0; }
