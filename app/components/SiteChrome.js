@@ -53,7 +53,7 @@ export function SiteHeader({ current = "" }) {
   const links = [
     ["home", "Home", pagePath("/")],
     ["services", "Services", pagePath("/services/")],
-    ["work", "Our work", pagePath("/our-work/")],
+    ["work", "Past Work", pagePath("/our-work/")],
     ["reviews", "Reviews", pagePath("/#reviews")],
     ["about", "About Me", pagePath("/#about")],
   ];
@@ -141,7 +141,7 @@ export function SiteFooter() {
       <div className="footer-links">
         <a href={pagePath("/")}>Home</a>
         <a href={pagePath("/services/")}>Services</a>
-        <a href={pagePath("/our-work/")}>Our work</a>
+        <a href={pagePath("/our-work/")}>Past Work</a>
         <a href={pagePath("/#reviews")}>Reviews</a>
         <a href={pagePath("/#about")}>About Me</a>
       </div>
