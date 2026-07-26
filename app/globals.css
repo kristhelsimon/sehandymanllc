@@ -132,7 +132,7 @@ main[data-theme="field"] {
 .concept-tabs button.active { background: white; border-color: white; color: #142019; transform: translateY(-1px); }
 .concept-tabs button.active small { color: #67706b; }
 
-.site-shell { margin: auto; max-width: 1600px; min-width: 0; overflow: clip; width: 100%; background: var(--paper); box-shadow: 0 20px 70px #1f2a2430; }
+.site-shell { margin: auto; min-width: 0; overflow: clip; width: 100%; background: var(--paper); box-shadow: 0 20px 70px #1f2a2430; }
 .utility {
   align-items: center;
   background: var(--ink);
@@ -1145,4 +1145,26 @@ main[data-theme="field"] .about-stat strong { font-family: var(--display); }
   .work-review { gap: 25px; grid-template-columns: 1fr; padding: 55px 7%; }
   .work-review-rating { border-bottom: 1px solid var(--line); border-right: 0; padding: 0 0 22px; }
   .work-review blockquote { font-size: 19px; }
+}
+
+/* Large desktops: the shell now runs edge to edge, but every size in this
+   sheet is fixed px, so body copy reads small on a 27" monitor. Nudge the
+   text that carries the most reading weight rather than the headings, which
+   already scale with vw. */
+@media (min-width: 1700px) {
+  .hero p { font-size: 18px; }
+  .section-heading > p { font-size: 15px; max-width: 520px; }
+  .service-card h3 { font-size: 26px; }
+  .service-card p { font-size: 13px; }
+  .service-card a { font-size: 10px; }
+  .project-copy > p { font-size: 14px; }
+  .project-copy li strong { font-size: 13px; }
+  .project-copy li span { font-size: 12px; }
+  .review-slide article > p { font-size: 18px; }
+  .about-copy p { font-size: 14px; }
+  .faq-list button { font-size: 14px; }
+  .faq-list article > div > p { font-size: 13px; }
+  .estimate > div > p { font-size: 14px; }
+  .estimate label span { font-size: 10px; }
+  .work-standard-list p, .work-proof-strip span { font-size: 13px; }
 }
