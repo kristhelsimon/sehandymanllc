@@ -171,12 +171,12 @@ header {
   z-index: 40;
 }
 :target { scroll-margin-top: calc(var(--header-height) + 16px); }
-.brand { align-items: center; display: flex; gap: 10px; justify-self: start; }
-.brand-mark { align-items: center; color: var(--accent); display: flex; font-family: var(--display); font-size: 27px; font-weight: 700; letter-spacing: -3px; line-height: .8; }
-.brand-mark i { color: var(--ink); font-size: 17px; font-style: normal; margin: 0 3px; }
+.brand { align-items: center; display: flex; gap: 12px; justify-self: start; }
+.brand-mark { align-items: center; color: var(--accent); display: flex; font-family: var(--display); font-size: 38px; font-weight: 700; letter-spacing: -4px; line-height: .8; }
+.brand-mark i { color: var(--ink); font-size: 22px; font-style: normal; margin: 0 4px; }
 .brand-copy { display: flex; flex-direction: column; }
-.brand-copy strong { font: 700 15px/.9 var(--body); letter-spacing: .12em; }
-.brand-copy small { color: var(--accent); font-size: 7px; font-weight: 700; letter-spacing: .16em; margin-top: 5px; }
+.brand-copy strong { font: 700 19px/.9 var(--body); letter-spacing: .12em; }
+.brand-copy small { color: var(--accent); font-size: 14px; font-weight: 700; letter-spacing: .14em; margin-top: 6px; }
 header nav { align-items: center; display: flex; gap: 32px; }
 header nav a { font-size: 12px; font-weight: 600; padding: 5px 0; position: relative; }
 header nav a:hover { color: var(--accent); }
@@ -213,6 +213,7 @@ header nav a.active::after { background: var(--accent); border-radius: 2px; bott
 .hero-benefit span { display: flex; flex-direction: column; font-size: 9px; line-height: 1.25; white-space: nowrap; }
 .hero-benefit strong { color: white; font-size: 11px; }
 .hero-rating {
+      margin-top: 30px;
   align-items: center;
   backdrop-filter: blur(12px);
   background: #ffffffed;
@@ -224,6 +225,7 @@ header nav a.active::after { background: var(--accent); border-radius: 2px; bott
   margin: -12px 0 25px;
   max-width: 390px;
   padding: 12px 15px;
+
 }
 .hero-stars { color: #e9a928; font-size: 12px; letter-spacing: 1px; }
 .hero-rating > strong { font: 600 24px/1 var(--display); }
@@ -740,9 +742,20 @@ main[data-theme="field"] .about-stat strong { font-family: var(--display); }
 .services-phone > svg { color: var(--accent); width: 23px; }
 .services-phone span { display: flex; flex-direction: column; font: 500 17px var(--display); }
 .services-phone small { color: #aeb9b2; font: 700 8px var(--body); letter-spacing: .12em; margin-bottom: 3px; text-transform: uppercase; }
-.services-hero-visual { height: 100%; min-height: 0; overflow: hidden; position: relative; }
+/* Two photos share the panel. The 2px gap has no background of its own, so the
+   hero's ink shows through it as a seam between them. */
+.services-hero-visual {
+  display: grid;
+  gap: 2px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: minmax(0, 1fr);
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+}
 .services-hero-visual::after { background: linear-gradient(90deg, var(--ink), transparent 28%); content: ""; inset: 0; position: absolute; }
-.services-hero-visual > img { height: 100%; object-fit: cover; }
+.services-hero-visual > img { height: 100%; min-height: 0; object-fit: cover; }
 .services-hero-note {
   background: color-mix(in srgb, var(--surface) 94%, transparent);
   border-radius: 18px 0 0 0;
@@ -1171,3 +1184,129 @@ main[data-theme="field"] .about-stat strong { font-family: var(--display); }
 
 .redirect-notice { align-items: center; display: flex; flex-direction: column; gap: 18px; padding: 120px 8%; text-align: center; }
 .redirect-notice p { color: var(--muted); font-size: 13px; margin: 0; }
+
+/* Readability floor for information that helps visitors decide or take action. */
+.utility { font-size: 14px; }
+.utility-link { font-size: 14px; }
+.utility-link small, .follow-label { font-size: 12px; }
+header nav a { font-size: 14px; }
+.button, .quick-quote button { font-size: 14px; }
+
+.hero-benefit span { font-size: 14px; line-height: 1.3; }
+.hero-benefit strong { font-size: 15px; }
+.hero-rating b, .hero-rating small { font-size: 14px; }
+.hero-proof > span { font-size: 14px; }
+
+.trust-badge span, .trust-strip p { font-size: 14px; }
+.section-heading > p, .service-card p, .project-copy > p { font-size: 15px; }
+.service-card a, .project-copy li span, .text-link { font-size: 14px; }
+.project-copy li strong { font-size: 15px; }
+
+.big-rating small, .big-rating a, .review-more { font-size: 14px; }
+.review-slide footer strong { font-size: 14px; }
+.review-slide footer small { font-size: 13px; }
+.about-stat span, .about-copy p, .faq-intro > p,
+.faq-list article > div > p, .estimate > div > p { font-size: 15px; }
+.faq-list button { font-size: 15px; }
+.estimate label span, .estimate form > small { font-size: 14px; }
+
+.footer-links a, .site-footer .footer-email, .footer-contact small,
+.footer-contact span, .footer-bottom { font-size: 14px; }
+
+.services-hero-copy > p, .services-hero-note span,
+.services-intro > p, .service-unsure > p,
+.service-detail-copy > p, .service-detail-copy li,
+.service-detail-copy > a, .service-process p,
+.service-credentials span { font-size: 14px; }
+.services-phone small, .service-jump-nav span { font-size: 12px; }
+
+.work-hero-copy > p, .work-text-link, .work-proof-strip span,
+.work-intro > div:last-child > p, .work-intro > div:last-child > a,
+.work-tile figcaption, .work-standard-list p,
+.work-review-author strong, .work-review > a { font-size: 14px; }
+.work-review-author small { font-size: 13px; }
+
+@media (max-width: 600px) {
+  .utility-link { font-size: 14px; }
+  .hero p { font-size: 15px; }
+  .hero-benefit span { font-size: 14px; }
+  .hero-benefit strong { font-size: 15px; }
+  .hero-stars { font-size: 14px; }
+  .service-card p, .faq-list article > div > p,
+  .work-standard-list p, .work-proof-strip span { font-size: 14px; }
+  .project-copy li strong { font-size: 15px; }
+  .project-copy li span, .estimate label span { font-size: 14px; }
+}
+
+/* The same minimum applies to shared chrome and every secondary page. */
+.concept-label span, .concept-tabs small,
+.concept-tabs button > span:first-child, .concept-tabs button strong,
+.utility-link small, .follow-label,
+.brand-copy small, .eyebrow, .kicker,
+.hero-stars, .hero-index,
+.trust-badge small, .service-top span,
+.review-card-stars, .review-more span,
+.review-slide footer > span, .about-copy .kicker,
+.areas small, .redirect-notice p { font-size: 14px; }
+.brand-copy strong { font-size: 19px; }
+
+.service-jump-nav a, .service-jump-nav span,
+.service-detail-image > span,
+.service-process article > span,
+.work-filters button, .work-standard-list article > span,
+.work-review-rating span { font-size: 14px; }
+.services-phone small, .work-review-author small,
+.review-slide footer small { font-size: 14px; }
+
+@media (max-width: 600px) {
+  .brand { gap: 8px; }
+  .brand-mark { font-size: 31px; letter-spacing: -3px; }
+  .brand-mark i { font-size: 19px; margin: 0 3px; }
+  .brand-copy strong { font-size: 15px; letter-spacing: .1em; }
+  .brand-copy small { font-size: 14px; letter-spacing: .08em; margin-top: 4px; }
+  main[data-theme="warm"] .hero { height: 565px; min-height: 565px; }
+  main[data-theme="warm"] .hero-shade {
+    background: linear-gradient(
+      90deg,
+      rgba(38, 53, 47, .48) 0%,
+      rgba(38, 53, 47, .24) 58%,
+      rgba(38, 53, 47, .04) 100%
+    );
+  }
+  main[data-theme="warm"] .hero-copy {
+    bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-shadow: 0 2px 5px #0009;
+  }
+  main[data-theme="warm"] .hero-copy > .eyebrow,
+  main[data-theme="warm"] .hero-copy > h1,
+  main[data-theme="warm"] .hero-copy > p,
+  main[data-theme="warm"] .hero-copy > .hero-benefits,
+  main[data-theme="warm"] .hero-copy > .hero-rating { margin: 0; }
+  main[data-theme="warm"] .hero-copy > p { line-height: 1.65; }
+  main[data-theme="warm"] .hero-copy > .hero-benefits { margin-top: 20px; }
+  main[data-theme="warm"] .hero-rating { margin-top: 25px; max-width: none; text-shadow: none; width: 100%; }
+  .utility-link.email { grid-column: 1 / -1; grid-row: 2; }
+  .utility-socials { grid-column: 1 / -1; grid-row: 3; justify-self: end; }
+  .hero-benefits { display: grid; gap: 8px; grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; }
+  .hero-benefit { align-items: flex-start; flex-direction: column; gap: 5px; }
+  .hero-benefit img { height: 28px; }
+}
+
+/* Proof-row spacing across desktop, tablet, and mobile. */
+main[data-theme="warm"] .hero-copy > .hero-benefits { margin-top: 20px; }
+main[data-theme="warm"] .hero-copy > .hero-rating { margin-top: 25px; }
+
+@media (min-width: 901px) {
+  main[data-theme="warm"] .hero { height: 580px; min-height: 580px; }
+  main[data-theme="warm"] .hero > img { object-position: center top; }
+
+  .services-hero-copy { padding-bottom: 26px; padding-top: 26px; }
+  .services-hero h1 { font-size: clamp(44px, 3.7vw, 56px); margin: 12px 0; }
+  .services-hero-copy > p { line-height: 1.6; margin-bottom: 18px; }
+  .services-hero-actions { flex-wrap: nowrap; gap: 14px; }
+  .services-hero-actions .button { flex: 0 0 auto; gap: 14px; padding-left: 17px; padding-right: 17px; }
+  .services-phone { flex: 0 0 auto; }
+}

@@ -39,9 +39,9 @@ const concepts = {
     name: "Warm Modern",
     note: "Approachable, calm, residential",
     eyebrow: "Meet Jaime · Your local handyman since 2011",
-    title: "Hi, I’m Jaime. Tell me what your home needs.",
+    title: "Home Repairs Done Right in Renton, WA",
     intro:
-      "For 15 years I’ve helped Seattle and Eastside homeowners with repairs, upgrades, and remodels. We’ll talk it through in English or Spanish, and you’ll know the price before I pick up a tool.",
+      "Reliable repairs, upgrades, and home projects with honest pricing and clear communication.",
     primary: "Get my free estimate",
     secondary: "Call (206) 670-3045",
     proof: ["You work with me, not a crew", "Se habla español", "Free estimates"],
@@ -488,12 +488,12 @@ export default function Home() {
                 <span><strong>15 years</strong>of expertise</span>
               </div>
               <div className="hero-benefit">
-                <img src={assetPath("/trust-icons/24-hour-estimates.webp")} alt="" />
-                <span><strong>24-hour</strong>estimates</span>
+                <img src={assetPath("/trust-icons/language-icon.webp")} alt="" />
+                <span><strong>Speaks Spanish</strong>&amp; English</span>
               </div>
               <div className="hero-benefit">
                 <img src={assetPath("/trust-icons/superior-craftsmanship.webp")} alt="" />
-                <span><strong>Superior</strong>craftsmanship</span>
+                <span><strong>Work with</strong>Jaime</span>
               </div>
             </div>
             <a
@@ -508,13 +508,6 @@ export default function Home() {
               <span><b>Google rating</b><small>Trusted by local homeowners</small></span>
               <Icon name="arrow" />
             </a>
-          </div>
-          <div className="hero-proof">
-            {concept.proof.map((item) => (
-              <span key={item}>
-                <i><Icon name="check" /></i>{item}
-              </span>
-            ))}
           </div>
         </section>
 

@@ -85,11 +85,9 @@ export default function ServicesPageClient() {
         <section className="services-hero">
           <div className="services-hero-copy">
             <span className="kicker">Seattle &amp; Eastside · Se habla español</span>
-            <h1>One call for the work your home needs.</h1>
+            <h1>Home Improvements Done Right in Renton, WA</h1>
             <p>
-              From the repair that cannot wait to the room you have been meaning to
-              improve, you deal with me directly—clear answers, careful work, and an
-              honest price. We can talk it through in English or Spanish.
+              From interior painting and drywall to carpentry, installations, and repairs—dependable work with honest pricing and clear communication.
             </p>
             <div className="services-hero-actions">
               <a className="button primary" href="#estimate">
@@ -102,7 +100,14 @@ export default function ServicesPageClient() {
             </div>
           </div>
           <div className="services-hero-visual">
-            <img src={assetPath("/services/remodeling.webp")} alt="Completed residential remodeling work" />
+            <img
+              src={assetPath("/services/flooring.webp")}
+              alt="Finished hardwood flooring and stair treads in a Seattle home"
+            />
+            <img
+              src={assetPath("/services/drywall-painting.webp")}
+              alt="Kitchen masked off with tape before drywall and painting work"
+            />
             <div className="services-hero-note">
               <strong>Since 2011</strong>
               <span>Quality work with respect for your home.</span>
