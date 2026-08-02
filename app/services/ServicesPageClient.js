@@ -102,11 +102,7 @@ export default function ServicesPageClient() {
           <div className="services-hero-visual">
             <img
               src={assetPath("/services/flooring.webp")}
-              alt="Finished hardwood flooring and stair treads in a Seattle home"
-            />
-            <img
-              src={assetPath("/services/drywall-painting.webp")}
-              alt="Kitchen masked off with tape before drywall and painting work"
+              alt="Laying wood-look plank flooring in a home"
             />
             <div className="services-hero-note">
               <strong>Since 2011</strong>

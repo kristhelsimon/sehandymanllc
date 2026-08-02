@@ -6,6 +6,7 @@ export const serviceCategories = [
   { slug: "installations", label: "Installations" },
   { slug: "maintenance-repairs", label: "Maintenance & Repairs" },
   { slug: "drywall-painting", label: "Drywall & Painting" },
+  { slug: "flooring", label: "Flooring" },
   { slug: "remodeling", label: "Remodeling" },
 ];
 

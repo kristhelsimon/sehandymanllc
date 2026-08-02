@@ -742,18 +742,7 @@ main[data-theme="field"] .about-stat strong { font-family: var(--display); }
 .services-phone > svg { color: var(--accent); width: 23px; }
 .services-phone span { display: flex; flex-direction: column; font: 500 17px var(--display); }
 .services-phone small { color: #aeb9b2; font: 700 8px var(--body); letter-spacing: .12em; margin-bottom: 3px; text-transform: uppercase; }
-/* Two photos share the panel. The 2px gap has no background of its own, so the
-   hero's ink shows through it as a seam between them. */
-.services-hero-visual {
-  display: grid;
-  gap: 2px;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: minmax(0, 1fr);
-  height: 100%;
-  min-height: 0;
-  overflow: hidden;
-  position: relative;
-}
+.services-hero-visual { height: 100%; min-height: 0; overflow: hidden; position: relative; }
 .services-hero-visual::after { background: linear-gradient(90deg, var(--ink), transparent 28%); content: ""; inset: 0; position: absolute; }
 .services-hero-visual > img { height: 100%; min-height: 0; object-fit: cover; }
 .services-hero-note {
@@ -1265,12 +1254,15 @@ header nav a { font-size: 14px; }
   .brand-copy strong { font-size: 15px; letter-spacing: .1em; }
   .brand-copy small { font-size: 14px; letter-spacing: .08em; margin-top: 4px; }
   main[data-theme="warm"] .hero { height: 565px; min-height: 565px; }
+  main[data-theme="warm"] .hero > img { object-position: 14% center; }
   main[data-theme="warm"] .hero-shade {
     background: linear-gradient(
       90deg,
-      rgba(38, 53, 47, .48) 0%,
-      rgba(38, 53, 47, .24) 58%,
-      rgba(38, 53, 47, .04) 100%
+      rgba(38, 53, 47, .84) 0%,
+      rgba(38, 53, 47, .7) 36%,
+      rgba(38, 53, 47, .34) 62%,
+      rgba(38, 53, 47, .08) 80%,
+      rgba(38, 53, 47, 0) 92%
     );
   }
   main[data-theme="warm"] .hero-copy {

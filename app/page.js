@@ -485,15 +485,15 @@ export default function Home() {
             <div className="hero-benefits" aria-label="Why homeowners choose S and E Handyman">
               <div className="hero-benefit">
                 <img src={assetPath("/trust-icons/15-years-expertise.webp")} alt="" />
-                <span><strong>15 years</strong>of expertise</span>
+                <span><strong>15+ Years</strong>of Experience</span>
               </div>
               <div className="hero-benefit">
                 <img src={assetPath("/trust-icons/language-icon.webp")} alt="" />
-                <span><strong>Speaks Spanish</strong>&amp; English</span>
+                <span><strong>Se Habla</strong>Español</span>
               </div>
               <div className="hero-benefit">
                 <img src={assetPath("/trust-icons/superior-craftsmanship.webp")} alt="" />
-                <span><strong>Work with</strong>Jaime</span>
+                <span><strong>Work Directly</strong>With Jaime</span>
               </div>
             </div>
             <a
