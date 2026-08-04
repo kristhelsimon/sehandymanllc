@@ -414,10 +414,6 @@ export default function Home() {
               <Icon name="phone" />
               <span><small>Mobile</small>(206) 670-3045</span>
             </a>
-            <a className="utility-link office" href="tel:2064919633">
-              <Icon name="phone" />
-              <span><small>Office</small>(206) 491-9633</span>
-            </a>
             <a className="utility-link email" href="mailto:sehandymanllc@gmail.com">
               <Icon name="mail" />
               <span><small>Email me</small>sehandymanllc@gmail.com</span>
@@ -435,7 +431,7 @@ export default function Home() {
               </a>
               <a
                 className="social-link"
-                href="https://wa.me/12064919633"
+                href="https://wa.me/12066703045"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Chat with S and E Handyman on WhatsApp"
@@ -812,8 +808,6 @@ export default function Home() {
           <div className="footer-contact">
             <small>Mobile</small>
             <a href="tel:2066703045">(206) 670-3045</a>
-            <small>Office</small>
-            <a href="tel:2064919633">(206) 491-9633</a>
             <span>sehandymanllc@gmail.com</span>
           </div>
           <div className="footer-bottom">

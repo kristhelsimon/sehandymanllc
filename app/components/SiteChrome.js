@@ -67,10 +67,6 @@ export function SiteHeader({ current = "" }) {
             <Icon name="phone" />
             <span><small>Mobile</small>(206) 670-3045</span>
           </a>
-          <a className="utility-link office" href="tel:2064919633">
-            <Icon name="phone" />
-            <span><small>Office</small>(206) 491-9633</span>
-          </a>
           <a className="utility-link email" href="mailto:sehandymanllc@gmail.com">
             <Icon name="mail" />
             <span><small>Email me</small>sehandymanllc@gmail.com</span>
@@ -88,7 +84,7 @@ export function SiteHeader({ current = "" }) {
             </a>
             <a
               className="social-link"
-              href="https://wa.me/12064919633"
+              href="https://wa.me/12066703045"
               target="_blank"
               rel="noreferrer"
               aria-label="Chat with S and E Handyman on WhatsApp"
@@ -148,8 +144,6 @@ export function SiteFooter() {
       <div className="footer-contact">
         <small>Mobile</small>
         <a href="tel:2066703045">(206) 670-3045</a>
-        <small>Office</small>
-        <a href="tel:2064919633">(206) 491-9633</a>
         <a className="footer-email" href="mailto:sehandymanllc@gmail.com">sehandymanllc@gmail.com</a>
       </div>
       <div className="footer-bottom">
