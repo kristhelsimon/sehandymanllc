@@ -515,16 +515,13 @@ export default function Home() {
               <input name="name" type="text" placeholder="Name" autoComplete="name" required />
             </label>
             <label>
-              <span className="sr-only">Phone</span>
-              <input name="phone" type="tel" placeholder="Phone" autoComplete="tel" required />
+              <span className="sr-only">Phone or Email</span>
+              <input name="contact" type="text" placeholder="Phone or Email" required />
             </label>
+            <ServiceSelect compact />
             <label>
-              <span className="sr-only">Email</span>
-              <input name="email" type="email" placeholder="Email" autoComplete="email" required />
-            </label>
-            <label>
-              <span className="sr-only">How can I help you?</span>
-              <textarea name="message" rows={1} placeholder="How can I help you?" required />
+              <span className="sr-only">Project description</span>
+              <textarea name="message" rows={1} placeholder="Project description" required />
             </label>
             <button type="submit">Submit <Icon name="arrow" /></button>
           </form>
@@ -777,16 +774,16 @@ export default function Home() {
           </div>
           <form onSubmit={submitQuote}>
             <label>
-              <span>Your name</span>
+              <span>Name</span>
               <input name="name" type="text" placeholder="Jane Smith" autoComplete="name" required />
             </label>
             <label>
-              <span>Phone or email</span>
+              <span>Phone or Email</span>
               <input name="contact" type="text" placeholder="How should I reach you?" required />
             </label>
             <ServiceSelect />
             <label className="wide">
-              <span>What do you need help with?</span>
+              <span>Project description</span>
               <textarea name="message" placeholder="A quick description of your project..." required />
             </label>
             <button className="button primary" type="submit">
