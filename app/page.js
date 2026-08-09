@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import { ServiceSelect } from "./components/ServiceSelect";
+import { submitLead } from "./lib/submitLead";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 const assetPath = (path) => `${basePath}${path}`;
@@ -381,29 +382,6 @@ export default function Home() {
     reviewTouchStart.current = null;
   }
 
-  function submitQuote(event) {
-    event.preventDefault();
-    const form = new FormData(event.currentTarget);
-    const name = String(form.get("name") || "").trim();
-    const phone = String(form.get("phone") || "").trim();
-    const email = String(form.get("email") || "").trim();
-    const contact = String(form.get("contact") || "").trim();
-    const service = String(form.get("service") || "").trim();
-    const message = String(form.get("message") || "").trim();
-    const body = [
-      `Name: ${name || "Not provided"}`,
-      phone ? `Phone: ${phone}` : null,
-      email ? `Email: ${email}` : null,
-      contact ? `Preferred contact: ${contact}` : null,
-      service ? `Service: ${service}` : null,
-      "",
-      "Project details:",
-      message || "Not provided",
-    ].filter((line) => line !== null).join("\n");
-
-    window.location.href = `mailto:sehandymanllc@gmail.com?subject=${encodeURIComponent(`Free quote request from ${name || "website visitor"}`)}&body=${encodeURIComponent(body)}`;
-  }
-
   return (
     <main id="top" data-theme="warm">
       <div className="site-shell">
@@ -509,7 +487,7 @@ export default function Home() {
 
         <section className="quick-quote" id="quote" aria-labelledby="quick-quote-title">
           <h2 id="quick-quote-title">Get your <strong>FREE Quote</strong></h2>
-          <form onSubmit={submitQuote}>
+          <form onSubmit={submitLead}>
             <label>
               <span className="sr-only">Name</span>
               <input name="name" type="text" placeholder="Name" autoComplete="name" required />
@@ -772,7 +750,7 @@ export default function Home() {
             <h2>What can I take<br />off your list?</h2>
             <p>Tell me about your project in English or Spanish. I’ll follow up personally to talk through the details, the timing, and what it will cost.</p>
           </div>
-          <form onSubmit={submitQuote}>
+          <form onSubmit={submitLead}>
             <label>
               <span>Name</span>
               <input name="name" type="text" placeholder="Jane Smith" autoComplete="name" required />

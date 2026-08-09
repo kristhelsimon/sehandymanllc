@@ -2,6 +2,7 @@
 
 import { Icon, SiteFooter, SiteHeader } from "../components/SiteChrome";
 import { ServiceSelect } from "../components/ServiceSelect";
+import { submitLead } from "../lib/submitLead";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 const assetPath = (path) => `${basePath}${path}`;
@@ -56,25 +57,6 @@ const services = [
     items: ["Kitchen improvements", "Bathroom remodeling", "Full-room upgrades", "Finish work and project coordination"],
   },
 ];
-
-function submitQuote(event) {
-  event.preventDefault();
-  const form = new FormData(event.currentTarget);
-  const name = String(form.get("name") || "").trim();
-  const contact = String(form.get("contact") || "").trim();
-  const service = String(form.get("service") || "").trim();
-  const message = String(form.get("message") || "").trim();
-  const body = [
-    `Name: ${name || "Not provided"}`,
-    `Phone or email: ${contact || "Not provided"}`,
-    `Service: ${service || "Not sure yet"}`,
-    "",
-    "Project details:",
-    message || "Not provided",
-  ].join("\n");
-
-  window.location.href = `mailto:sehandymanllc@gmail.com?subject=${encodeURIComponent(`Service estimate request from ${name || "website visitor"}`)}&body=${encodeURIComponent(body)}`;
-}
 
 export default function ServicesPageClient() {
   return (
@@ -203,7 +185,7 @@ export default function ServicesPageClient() {
               personally to talk through the details and next steps.
             </p>
           </div>
-          <form onSubmit={submitQuote}>
+          <form onSubmit={submitLead}>
             <label>
               <span>Your name</span>
               <input name="name" type="text" placeholder="Jane Smith" autoComplete="name" required />
